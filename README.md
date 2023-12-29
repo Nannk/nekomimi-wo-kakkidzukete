@@ -23,12 +23,13 @@
 ```
 pose                     | ear left            | ear right           | done? 
 direction | opennnes     | left | main | right | left | main | right |       
--------------------------|---------------------|---------------------|-------
-sides     | fully open   | 90   | 0    | 90    | 90   | 0    | 90    | no    
+----------|--------------|---------------------|---------------------|-------
+sides     | fully open   | 106  | 0    | -106  | 106  | 0    | -106  | no    
 sides     | fully closed | 0    | 0    | 0     | 0    | 0    | 0     | no    
+sides     | half open    | 
 sides     |
 sides     |
-forward   | fully open   |???   | -90  |???    |???   | 90   |???    | no    
+forward   | fully open   | 106  | -90  | -106  | 106  | 90   | -106  | no    
 forward   |
 forward   |
 forward   |
