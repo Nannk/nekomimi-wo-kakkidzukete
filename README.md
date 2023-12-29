@@ -17,7 +17,8 @@
     - [ ] Poses as sideffects functions (move servos to predefined angle values)
   - [ ] IMU Data
     - [ ] Find a Library (depends on hardware IMU)
-    - [ ] Raw IMU data
+      - [ElectronicCats/MPU6050](https://github.com/ElectronicCats/mpu6050)
+    - [ ] Get raw IMU data (through Library)
     - [ ] Kalman Filter for attitude aquisition
   - [ ] IMU Data processing (AI or a bunch of threshholds)
 
