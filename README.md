@@ -1,6 +1,6 @@
-猫耳を活気づけて (is supposed to say "Animated Cat Ears")
+# 猫耳を活気づけて (is supposed to say "Animated Cat Ears")
 
-Development Plan
+## Development Plan
 - [ ] Hardware 
   - [x] general structure(Hinges, servo placement and Head-to-ears connection) - Revision might be needed
   - [ ] Microcontroller & IMU
@@ -18,3 +18,10 @@ Development Plan
     - [ ] Raw IMU data
     - [ ] Kalman Filter for attitude aquisition
   - [ ] IMU Data processing (AI or a bunch of threshholds)
+
+## List of poses
+### and implementation tracker
+- [ ] Up to the sides (Default) 
+- [ ] Up Forward
+- [ ] Low backwards
+- [ ] Low to the sides 
