@@ -19,8 +19,7 @@
     - [ ] Kalman Filter for attitude aquisition
   - [ ] IMU Data processing (AI or a bunch of threshholds)
 
-### List of poses
-#### and implementation tracker
+## List of poses <sub>(and implementation tracker)</sub>
 - [ ] Up to the sides (Default) 
 - [ ] Up Forward
 - [ ] Low backwards
