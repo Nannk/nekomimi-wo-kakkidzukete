@@ -2,7 +2,7 @@
 
 Development Plan
 - [ ] Hardware 
-  -[x] general structure(Hinges, servo placement and Head-to-ears connection) - Revision might be needed
+  -[ ] general structure(Hinges, servo placement and Head-to-ears connection) - Revision might be needed
   - [ ] Microcontroller & IMU
     - [ ] Choose the IMU and MCU
     - [ ] placement
