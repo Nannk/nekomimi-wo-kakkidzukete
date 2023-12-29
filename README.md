@@ -5,8 +5,10 @@
   - [x] general structure(Hinges, servo placement and Head-to-ears connection) - Revision might be needed
   - [ ] Microcontroller & IMU
     - [ ] Choose the IMU and MCU
+    MCU: Arduino Nano / ESP8266
+    IMU: MPU6050 through i²c
     - [ ] placement
-    - [ ] Connection 
+    - [ ] Connection
 
 
 - [ ] Software
