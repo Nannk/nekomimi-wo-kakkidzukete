@@ -2,7 +2,7 @@
 
 ## Development Plan
 - [ ] Hardware 
-  - [x] general structure(Hinges, servo placement and Head-to-ears connection) - Revision might be needed
+  - [x] general structure(Hinges, servo placement and Head-to-ears connection) - Revision is needed asa new servos arrive
   - [ ] Microcontroller & IMU
     - [ ] Choose the IMU and MCU 
       - MCU: Arduino Nano / ESP8266
