@@ -20,14 +20,25 @@
   - [ ] IMU Data processing (AI or a bunch of threshholds)
 
 ## List of poses <sub>(and implementation tracker)</sub>
- ```
-| pose                      | ear left     | ear right    | implemented? |
-|                           | s1 | s2 | s3 | s1 | s2 | s3 |              |
-|---------------------------|--------------|--------------|--------------|
-| Middle to the sides (Def) | 90 | 90 | 90 | 90 | 90 | 90 | no           |
-| Up Forward                |??? | ???|??? |??? |??? |??? | no           |
-| Low backwards             |
-| Low to the sides          |
+```
+pose                     | ear left            | ear right           | done? 
+direction | opennnes     | left | main | right | left | main | right |       
+-------------------------|---------------------|---------------------|-------
+sides     | fully open   | 90   | 0    | 90    | 90   | 0    | 90    | no    
+sides     | fully closed | 0    | 0    | 0     | 0    | 0    | 0     | no    
+sides 
+sides 
+forward   | fully open   |???   | -90  |???    |???   | 90   |???    | no    
+forward
+forward
+forward
+back      | fully closed | 0    | 60   | 0     | 0    | -60  | 0     | no    
+back
+back
+back
+
+
+
 ```
 
 [CAD Model](https://cad.onshape.com/documents/12e9aba77e87c6321bec619e/w/794df45025b857e20fcdd77e/e/3349def638c04338ac328868?renderMode=0&uiState=658ed7810e636f5b707b00f6)
