@@ -20,7 +20,12 @@
   - [ ] IMU Data processing (AI or a bunch of threshholds)
 
 ## List of poses <sub>(and implementation tracker)</sub>
-- [ ] Up to the sides (Default) 
-- [ ] Up Forward
-- [ ] Low backwards
-- [ ] Low to the sides 
+ ```
+| pose                      | ear left     | ear right    | implemented? |
+|                           | s1 | s2 | s3 | s1 | s2 | s3 |              |
+|---------------------------|--------------|--------------|--------------|
+| Middle to the sides (Def) | 90 | 90 | 90 | 90 | 90 | 90 | no           |
+| Up Forward                |??? | ???|??? |??? |??? |??? | no           |
+| Low backwards             |
+| Low to the sides          |
+```
