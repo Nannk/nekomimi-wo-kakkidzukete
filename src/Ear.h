@@ -2,7 +2,6 @@
 #define Ear_h
 
 #include <Arduino.h>
-#include <Servo.h>
 
 class Ear {
 public:
