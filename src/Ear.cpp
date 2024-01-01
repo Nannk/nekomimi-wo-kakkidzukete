@@ -20,6 +20,7 @@ void Ear::movetoangleposition(int angleLeft, int angleMain, int angleRight) {
 }
 
 // probably make pose enum?
+// or just write a function for each pose
 void Ear::movetoposition(int pose) {
   switch (pose) {
   case 0:

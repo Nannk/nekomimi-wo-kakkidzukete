@@ -9,7 +9,7 @@
       - IMU: MPU6050 through i²c
     - [ ] placement
     - [ ] Connection
-
+  - [ ] Fluff (Fur) - [this?](https://www.amazon.de/WLLHYF-zotteligen-flauschige-Stuhlabdeckung-Weihnachten/dp/B0BJKKF45H) (a combination of white & black? pink insides?) how to attach?
 
 - [ ] Software
   - [ ] Poses 
@@ -46,3 +46,5 @@ and some intermediates
 ```
 
 [CAD Model](https://cad.onshape.com/documents/12e9aba77e87c6321bec619e/w/794df45025b857e20fcdd77e/e/3349def638c04338ac328868?renderMode=0&uiState=658ed7810e636f5b707b00f6)
+
+
