@@ -2,6 +2,7 @@
 #define Ear_h
 
 #include <Arduino.h>
+#include <Servo.h>
 
 class Ear {
 public:
@@ -10,5 +11,8 @@ public:
   void movetoposition(int pose);
 
 private:
+  Servo servoLeft;
+  Servo servoMain;
+  Servo servoRight;
 };
 #endif

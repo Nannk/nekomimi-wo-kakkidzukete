@@ -3,10 +3,6 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-Servo servoLeft;
-Servo servoMain;
-Servo servoRight;
-
 void Ear::earsetup(int pinLeft, int pinMain, int pinRight) {
   servoRight.attach(pinRight);
   servoMain.attach(pinMain);
