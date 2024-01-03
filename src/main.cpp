@@ -14,24 +14,33 @@ int RMAINAXISPIN = 10;
 int RRIGHTWINGPIN = 11;
 Ear rightear;
 
-int position = 0;
+// controls
+int POTPIN1 = A0;
+int POTPIN2 = A1;
+
+int positionL = 0;
+int positionR = 0;
 unsigned long previosmillis = 0;
 
 void setup() {
+  pinMode(POTPIN1, INPUT);
+  pinMode(POTPIN2, INPUT);
   leftear.earsetup(LLEFTWINGPIN, LMAINAXISPIN, LRIGHTWINGPIN);
   rightear.earsetup(RLEFTWINGPIN, RMAINAXISPIN, RRIGHTWINGPIN);
   previosmillis = millis();
 }
 
 void loop() {
-  // previosmillis = millis();
-  for (int position = 0; position <= 180; position++) {
-    // if (millis() - previosmillis >= 1000) {
+  if (millis() - previosmillis >= 50) {
     previosmillis = millis();
-    leftear.movetoangleposition(90, position, 90);
-    rightear.movetoangleposition(90, position, 90);
-    delay(100);
-    //}
+
+    positionL = analogRead(POTPIN1);
+    positionL = map(positionL, 0, 1023, 0, 180);
+
+    positionR = analogRead(POTPIN2);
+    positionR = map(positionR, 0, 1023, 0, 180);
+
+    leftear.movetoangleposition(90, positionL, 90);
+    rightear.movetoangleposition(90, positionR, 90);
   }
-  delay(500);
 }
