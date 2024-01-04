@@ -1,25 +1,13 @@
+// does not compile
+//"multiple definition of (thing from Config.cpp)"
+
+#include "Config.cpp"
 #include <Arduino.h>
 #include <Ear.h>
-#include <Servo.h>
-
-// Left
-int LLEFTWINGPIN = 3;
-int LMAINAXISPIN = 5;
-int LRIGHTWINGPIN = 6;
-Ear leftear;
-
-// Right
-int RLEFTWINGPIN = 9;
-int RMAINAXISPIN = 10;
-int RRIGHTWINGPIN = 11;
-Ear rightear;
-
-// controls
-int POTPIN1 = A0;
-int POTPIN2 = A1;
 
 int positionL = 0;
 int positionR = 0;
+
 unsigned long previosmillis = 0;
 
 void setup() {
