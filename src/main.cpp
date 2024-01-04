@@ -25,8 +25,10 @@ unsigned long previosmillis = 0;
 void setup() {
   pinMode(POTPIN1, INPUT);
   pinMode(POTPIN2, INPUT);
+
   leftear.earsetup(LLEFTWINGPIN, LMAINAXISPIN, LRIGHTWINGPIN);
   rightear.earsetup(RLEFTWINGPIN, RMAINAXISPIN, RRIGHTWINGPIN);
+
   previosmillis = millis();
 }
 
