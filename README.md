@@ -2,7 +2,7 @@
 
 ## Development Plan
 - [ ] Hardware 
-  - [x] general structure(Hinges, servo placement and Head-to-ears connection) - Revision is needed asa new servos arrive
+  - [x] general structure(Hinges, servo placement and Head-to-ears connection) - Revision is needed asa new servos arrive + make more space so the moving part doesnt touch the servo housing. Small servos are not powerful enough.
   - [ ] Microcontroller & IMU
     - [ ] Choose the IMU and MCU 
       - MCU: Arduino Nano / ESP8266
@@ -24,27 +24,41 @@
 
 ## List of poses <sub>(and implementation tracker)</sub>
 ```
-pose                                | ear left             | ear right            | done? 
-direction | opennnes                | left  | main | right | left  | main | right |
-----------|-------------------------|----------------------|----------------------|-------
-sides     | fully open              | 106   | 0    | -106  | 106   | 0    | -106  | no
-sides     | fully closed            | 0     | 0    | 0     | 0     | 0    | 0     | no
-sides     | half open               | 53    | 0    | -53   | 53    | 0    | -53   | no
-sides     | half closed to forward  | 132.5 | 0    | 0     | 0     | 0    | 132.5 | no
-sides     | half closed to back     | 0     | 0    | -132.5| 132.5 | 0    | 0     | no
-----------|-------------------------|----------------------|----------------------|-------
-forward   | fully open              | 106   | -90  | -106  | 106   | 90   | -106  | no
-forward   | half open               | 53    | -90  | -53   | 53    | 90   | -53   | no
-forward   | half closed to inside   | 132.5 | -90  | 0     | 0     | 90   | -132.5| no
-forward   | half closed to outside  | 0     | -90  | -132.5| -132.5| 90   | 0     | no
-----------|-------------------------|----------------------|----------------------|-------
-back      | fully closed            | 0     | 60   | 0     | 0     | -60  | 0     | no
-back      | half closed to inside   | 132.5 | 60   | 0     | 0     | -60  | -132.5| no
-back      | half closed to outside  | 0     | 60   | -132.5| -132.5| -60  | 0     | no
-----------|-------------------------|----------------------|----------------------|-------
+pose                                | ear left             | ear right            | done? | tested
+direction | opennnes                | left  | main | right | left  | main | right |       |
+----------|-------------------------|----------------------|----------------------|-------|--------
+sides     | fully open              | 106   | 0    | -106  | 106   | 0    | -106  | no    |
+sides     | fully closed            | 0     | 0    | 0     | 0     | 0    | 0     | no    |
+sides     | half open               | 53    | 0    | -53   | 53    | 0    | -53   | no    |
+sides     | half closed to forward  | 132.5 | 0    | 0     | 0     | 0    | 132.5 | no    |
+sides     | half closed to back     | 0     | 0    | -132.5| 132.5 | 0    | 0     | no    |
+----------|-------------------------|----------------------|----------------------|-------|--------
+forward   | fully open              | 106   | -90  | -106  | 106   | 90   | -106  | no    |
+forward   | half open               | 53    | -90  | -53   | 53    | 90   | -53   | no    |
+forward   | half closed to inside   | 132.5 | -90  | 0     | 0     | 90   | -132.5| no    |
+forward   | half closed to outside  | 0     | -90  | -132.5| -132.5| 90   | 0     | no    |
+----------|-------------------------|----------------------|----------------------|-------|--------
+back      | fully closed            | 0     | 60   | 0     | 0     | -60  | 0     | no    |
+back      | half closed to inside   | 132.5 | 60   | 0     | 0     | -60  | -132.5| no    |
+back      | half closed to outside  | 0     | 60   | -132.5| -132.5| -60  | 0     | no    |
+----------|-------------------------|----------------------|----------------------|-------|--------
 and some intermediates
 ```
 
 [CAD Model](https://cad.onshape.com/documents/12e9aba77e87c6321bec619e/w/794df45025b857e20fcdd77e/e/3349def638c04338ac328868?renderMode=0&uiState=658ed7810e636f5b707b00f6)
+## Servo Rotation
+
+Rotational direction of main servo is correct 
+```
+0 <-------> 180
+    servo 
+    shaft
+```
+view from top of the ear (bottom of the servo)
+
+RRservo is inverted
+RLservo is inverted
+
+I guess the LR and LL servos are inverted too (cant check bc those servos dont work)
 
 
