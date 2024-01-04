@@ -2,6 +2,7 @@
 //"multiple definition of (thing from Config.cpp)"
 
 #include "Config.cpp"
+#include "Pose.cpp"
 #include <Arduino.h>
 #include <Ear.h>
 
