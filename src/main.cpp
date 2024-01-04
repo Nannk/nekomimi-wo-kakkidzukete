@@ -2,6 +2,7 @@
 //"multiple definition of (thing from Config.cpp)"
 
 #include "Config.cpp"
+#include "HardwareSerial.h"
 #include <Arduino.h>
 #include <Ear.h>
 
@@ -12,9 +13,7 @@ Ear leftear;
 
 Ear rightear;
 
-unsigned long previosmillis = 0;
-
-void choosePose(int poseNumber) {
+void choosePose(int poseNumber, Ear leftear, Ear rightear) {
   switch (poseNumber) {
   case 10:
     leftear.movetoangleposition(106, 150, 26);
@@ -63,12 +62,17 @@ void choosePose(int poseNumber) {
   case 34:
     leftear.movetoangleposition(132, 0, 132);
     rightear.movetoangleposition(0, 180, 0);
+  default:
+    leftear.movetoangleposition(0, 0, 132);
+    rightear.movetoangleposition(0, 180, 132);
   }
 }
 
+unsigned long previosmillis = 0;
+int pose = 31;
+
 void setup() {
-  pinMode(POTPIN1, INPUT);
-  pinMode(POTPIN2, INPUT);
+  Serial.begin(9600);
 
   leftear.earsetup(LLEFTWINGPIN, LMAINAXISPIN, LRIGHTWINGPIN);
   rightear.earsetup(RLEFTWINGPIN, RMAINAXISPIN, RRIGHTWINGPIN);
@@ -80,13 +84,24 @@ void loop() {
   if (millis() - previosmillis >= 50) {
     previosmillis = millis();
 
-    positionL = analogRead(POTPIN1);
-    positionL = map(positionL, 0, 1023, 0, 180);
+    if (Serial.available()) {
+      pose = Serial.parseInt();
+      Serial.print("Pose Selected: ");
+      Serial.println(pose);
 
-    positionR = analogRead(POTPIN2);
-    positionR = map(positionR, 0, 1023, 0, 180);
+      choosePose(pose, leftear, rightear);
+    }
 
-    leftear.movetoangleposition(90, positionL, 90);
-    rightear.movetoangleposition(90, positionR, 90);
+    /* unused old code
+        positionL = analogRead(POTPIN1);
+        positionL = map(positionL, 0, 1023, 0, 180);
+
+        positionR = analogRead(POTPIN2);
+        positionR = map(positionR, 0, 1023, 0, 180);
+
+        leftear.movetoangleposition(90, positionL, 90);
+        rightear.movetoangleposition(90, positionR, 90);
+      */
   }
+  delay(1);
 }

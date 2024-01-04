@@ -1,7 +1,7 @@
 #ifndef Config_cpp
 #define Config_cpp
 
-#include <Ear.h>
+#include <Arduino.h>
 
 // Left
 const int LLEFTWINGPIN = 3;
