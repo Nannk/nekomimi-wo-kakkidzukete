@@ -49,6 +49,7 @@ First digit: Ears direction
   - 1 - Forward
   - 2 - Sides 
   - 3 - Back
+
 Second digit: Ears opennnes
   - 0 - fully open 
   - 1 - fully closed
