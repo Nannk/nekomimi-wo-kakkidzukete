@@ -13,8 +13,4 @@ const int RLEFTWINGPIN = 9;
 const int RMAINAXISPIN = 10;
 const int RRIGHTWINGPIN = 11;
 
-// controls
-const int POTPIN1 = A0;
-const int POTPIN2 = A1;
-
 #endif // !Config_cpp
