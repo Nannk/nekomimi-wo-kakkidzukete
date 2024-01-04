@@ -27,20 +27,20 @@
 int | pose                                | ear left             | ear right            | done? | tested
     | direction | opennnes                | left  | main | right | left  | main | right |       |
 ----|-----------|-------------------------|----------------------|----------------------|-------|--------
-20  | sides     | fully open              | 106   | 0    | -106  | 106   | 0    | -106  | no    |
-21  | sides     | fully closed            | 0     | 0    | 0     | 0     | 0    | 0     | no    |
-22  | sides     | half open               | 53    | 0    | -53   | 53    | 0    | -53   | no    |
-23  | sides     | half closed to forward  | 132.5 | 0    | 0     | 0     | 0    | 132.5 | no    |
-24  | sides     | half closed to back     | 0     | 0    | -132.5| 132.5 | 0    | 0     | no    |
+20  | sides     | fully open              | 106   | 90   | 26    | 106   | 90   | 26    | no    |
+21  | sides     | fully closed            | 0     | 90   | 132   | 0     | 90   | 132   | no    |
+22  | sides     | half open               | 53    | 90   | 79    | 53    | 90   | 79    | no    |
+23  | sides     | half closed to forward  | 132   | 90   | 132   | 0     | 90   | 0     | no    |
+24  | sides     | half closed to back     | 0     | 90   | 0     | 132   | 90   | 132   | no    |
 ----|-----------|-------------------------|----------------------|----------------------|-------|--------
-10  | forward   | fully open              | 106   | -90  | -106  | 106   | 90   | -106  | no    |
-12  | forward   | half open               | 53    | -90  | -53   | 53    | 90   | -53   | no    |
-13  | forward   | half closed to inside   | 132.5 | -90  | 0     | 0     | 90   | -132.5| no    |
-14  | forward   | half closed to outside  | 0     | -90  | -132.5| -132.5| 90   | 0     | no    |
+10  | forward   | fully open              | 106   | 150  | 26    | 106   | 30   | 26    | no    |
+12  | forward   | half open               | 53    | 150  | 79    | 53    | 30   | 79    | no    |
+13  | forward   | half closed to inside   | 132   | 150  | 132   | 0     | 30   | 0     | no    |
+14  | forward   | half closed to outside  | 0     | 150  | 0     | 132   | 30   | 132   | no    |
 ----|-----------|-------------------------|----------------------|----------------------|-------|--------
-31  | back      | fully closed            | 0     | 60   | 0     | 0     | -60  | 0     | no    |
-33  | back      | half closed to inside   | 132.5 | 60   | 0     | 0     | -60  | -132.5| no    |
-34  | back      | half closed to outside  | 0     | 60   | -132.5| -132.5| -60  | 0     | no    |
+31  | back      | fully closed            | 0     | 0    | 132   | 0     | 180  | 132   | no    |
+33  | back      | half closed to inside   | 0     | 0    | 0     | 132   | 180  | 132   | no    |
+34  | back      | half closed to outside  | 132   | 0    | 132   | 0     | 180  | 0     | no    |
 ----|-----------|-------------------------|----------------------|----------------------|-------|--------
 and some intermediates
 ```
@@ -67,10 +67,3 @@ Rotational direction of main servo is correct
     shaft
 ```
 view from top of the ear (bottom of the servo)
-
-RRservo is inverted
-RLservo is inverted
-
-I guess the LR and LL servos are inverted too (cant check bc those servos dont work)
-
-
