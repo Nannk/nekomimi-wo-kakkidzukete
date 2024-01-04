@@ -2,23 +2,19 @@
 #define Config_cpp
 
 #include <Ear.h>
-#pragma message "included"
 
 // Left
-int LLEFTWINGPIN = 3;
-int LMAINAXISPIN = 5;
-int LRIGHTWINGPIN = 6;
-
-Ear leftear;
+const int LLEFTWINGPIN = 3;
+const int LMAINAXISPIN = 5;
+const int LRIGHTWINGPIN = 6;
 
 // Right
-int RLEFTWINGPIN = 9;
-int RMAINAXISPIN = 10;
-int RRIGHTWINGPIN = 11;
-Ear rightear;
+const int RLEFTWINGPIN = 9;
+const int RMAINAXISPIN = 10;
+const int RRIGHTWINGPIN = 11;
 
 // controls
-int POTPIN1 = A0;
-int POTPIN2 = A1;
+const int POTPIN1 = A0;
+const int POTPIN2 = A1;
 
-#endif
+#endif // !Config_cpp
