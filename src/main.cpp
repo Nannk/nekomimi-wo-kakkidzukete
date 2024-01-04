@@ -2,9 +2,9 @@
 //"multiple definition of (thing from Config.cpp)"
 
 #include "Config.cpp"
-#include "Pose.cpp"
 #include <Arduino.h>
 #include <Ear.h>
+#include <Pose.cpp>
 
 int positionL = 0;
 int positionR = 0;

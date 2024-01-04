@@ -1,4 +1,3 @@
-#pragma once
 #ifndef Ear_h
 #define Ear_h
 

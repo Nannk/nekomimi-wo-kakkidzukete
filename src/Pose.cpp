@@ -1,4 +1,3 @@
-#pragma once
 #include "Config.cpp"
 #include <Ear.h>
 

@@ -1,5 +1,8 @@
-#pragma once
+#ifndef Config_cpp
+#define Config_cpp
+
 #include <Ear.h>
+#pragma message "included"
 
 // Left
 int LLEFTWINGPIN = 3;
@@ -17,3 +20,5 @@ Ear rightear;
 // controls
 int POTPIN1 = A0;
 int POTPIN2 = A1;
+
+#endif

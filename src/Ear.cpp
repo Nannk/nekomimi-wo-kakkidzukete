@@ -1,4 +1,3 @@
-#pragma once
 #include "Ear.h"
 #include <Arduino.h>
 #include <Servo.h>
