@@ -27,20 +27,20 @@
 int | pose                                | ear left             | ear right            | done? | tested
     | direction | opennnes                | left  | main | right | left  | main | right |       |
 ----|-----------|-------------------------|----------------------|----------------------|-------|--------
-20  | sides     | fully open              | 106   | 90   | 26    | 106   | 90   | 26    | no    |
-21  | sides     | fully closed            | 0     | 90   | 132   | 0     | 90   | 132   | no    |
-22  | sides     | half open               | 53    | 90   | 79    | 53    | 90   | 79    | no    |
-23  | sides     | half closed to forward  | 132   | 90   | 132   | 0     | 90   | 0     | no    |
-24  | sides     | half closed to back     | 0     | 90   | 0     | 132   | 90   | 132   | no    |
+20  | sides     | fully open              | 106   | 90   | 26    | 106   | 90   | 26    | ye    |
+21  | sides     | fully closed            | 0     | 90   | 132   | 0     | 90   | 132   | ye    |
+22  | sides     | half open               | 53    | 90   | 79    | 53    | 90   | 79    | ye    |
+23  | sides     | half closed to forward  | 132   | 90   | 132   | 0     | 90   | 0     | ye    |
+24  | sides     | half closed to back     | 0     | 90   | 0     | 132   | 90   | 132   | ye    |
 ----|-----------|-------------------------|----------------------|----------------------|-------|--------
-10  | forward   | fully open              | 106   | 150  | 26    | 106   | 30   | 26    | no    |
-12  | forward   | half open               | 53    | 150  | 79    | 53    | 30   | 79    | no    |
-13  | forward   | half closed to inside   | 132   | 150  | 132   | 0     | 30   | 0     | no    |
-14  | forward   | half closed to outside  | 0     | 150  | 0     | 132   | 30   | 132   | no    |
+10  | forward   | fully open              | 106   | 150  | 26    | 106   | 30   | 26    | ye    |
+12  | forward   | half open               | 53    | 150  | 79    | 53    | 30   | 79    | ye    |
+13  | forward   | half closed to inside   | 132   | 150  | 132   | 0     | 30   | 0     | ye    |
+14  | forward   | half closed to outside  | 0     | 150  | 0     | 132   | 30   | 132   | ye    |
 ----|-----------|-------------------------|----------------------|----------------------|-------|--------
-31  | back      | fully closed            | 0     | 0    | 132   | 0     | 180  | 132   | no    |
-33  | back      | half closed to inside   | 0     | 0    | 0     | 132   | 180  | 132   | no    |
-34  | back      | half closed to outside  | 132   | 0    | 132   | 0     | 180  | 0     | no    |
+31  | back      | fully closed            | 0     | 0    | 132   | 0     | 180  | 132   | ye    |
+33  | back      | half closed to inside   | 0     | 0    | 0     | 132   | 180  | 132   | ye    |
+34  | back      | half closed to outside  | 132   | 0    | 132   | 0     | 180  | 0     | ye    |
 ----|-----------|-------------------------|----------------------|----------------------|-------|--------
 and some intermediates
 ```
