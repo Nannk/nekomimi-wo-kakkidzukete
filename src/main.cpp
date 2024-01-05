@@ -2,63 +2,77 @@
 //"multiple definition of (thing from Config.cpp)"
 
 #include "Config.cpp"
+#include "Ear.h"
 #include "HardwareSerial.h"
 #include <Arduino.h>
-#include <Ear.h>
+#include <Servo.h>
 
 void choosePose(int poseNumber, Ear leftearf, Ear rightearf) {
   switch (poseNumber) {
   case 10:
     leftearf.movetoangleposition(106, 150, 26);
     rightearf.movetoangleposition(106, 30, 26);
+    break;
 
   case 12:
     leftearf.movetoangleposition(53, 150, 79);
     rightearf.movetoangleposition(53, 30, 79);
+    break;
 
   case 13:
     leftearf.movetoangleposition(132, 150, 132);
     rightearf.movetoangleposition(0, 30, 0);
+    break;
 
   case 14:
     leftearf.movetoangleposition(0, 150, 0);
     rightearf.movetoangleposition(132, 30, 132);
+    break;
 
   case 20:
     leftearf.movetoangleposition(106, 90, 26);
     rightearf.movetoangleposition(106, 90, 26);
+    break;
 
   case 21:
     leftearf.movetoangleposition(0, 90, 132);
     rightearf.movetoangleposition(0, 90, 132);
+    break;
 
   case 22:
     leftearf.movetoangleposition(53, 90, 79);
     rightearf.movetoangleposition(53, 90, 79);
+    break;
 
   case 23:
     leftearf.movetoangleposition(132, 90, 132);
     rightearf.movetoangleposition(0, 90, 0);
+    break;
 
   case 24:
     leftearf.movetoangleposition(0, 90, 0);
     rightearf.movetoangleposition(132, 90, 132);
+    break;
 
   case 31:
     leftearf.movetoangleposition(0, 0, 132);
     rightearf.movetoangleposition(0, 180, 132);
+    break;
 
   case 33:
     leftearf.movetoangleposition(0, 0, 0);
     rightearf.movetoangleposition(132, 180, 132);
+    break;
 
   case 34:
     leftearf.movetoangleposition(132, 0, 132);
     rightearf.movetoangleposition(0, 180, 0);
+    break;
 
   default:
     leftearf.movetoangleposition(0, 0, 132);
     rightearf.movetoangleposition(0, 180, 132);
+    break;
   }
 }
 
@@ -75,12 +89,13 @@ void setup() {
   leftear.earsetup(LLEFTWINGPIN, LMAINAXISPIN, LRIGHTWINGPIN);
   rightear.earsetup(RLEFTWINGPIN, RMAINAXISPIN, RRIGHTWINGPIN);
 
-  // previosmillis = millis();
+  previosmillis = millis();
 }
 
 void loop() {
-  // previosmillis = millis();
-  /*
+  if (millis() - previosmillis >= 50) {
+    previosmillis = millis();
+
     if (Serial.available()) {
       pose = Serial.parseInt();
       Serial.print("Pose Selected: ");
@@ -88,19 +103,7 @@ void loop() {
 
       choosePose(pose, leftear, rightear);
     }
-    */
-  choosePose(10, leftear, rightear);
-  delay(200);
-
-  choosePose(22, leftear, rightear);
-  delay(200);
-
-  choosePose(34, leftear, rightear);
-  delay(200);
-
-  choosePose(24, leftear, rightear);
-  delay(200);
-
+  }
   /* unused old code
       positionL = analogRead(POTPIN1);
       positionL = map(positionL, 0, 1023, 0, 180);
