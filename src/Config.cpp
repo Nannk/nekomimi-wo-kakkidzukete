@@ -1,19 +1,21 @@
 #ifndef Config_cpp
 #define Config_cpp
 
-#include <Arduino.h>
+// #include <Arduino.h>
 
-#define SCL D1
-#define SDA D2
+#define SCLK 14
+#define MISO 10
+#define CSI 11
+#define MOSI 13
 
 // Left
-#define LLEFTWINGPIN D3  // 3
-#define LMAINAXISPIN D4  // 5
-#define LRIGHTWINGPIN D5 // 6
+#define LLEFTWINGPIN D1  // 3
+#define LMAINAXISPIN D2  // 5
+#define LRIGHTWINGPIN D3 // 6
 
 // Right
-#define RLEFTWINGPIN D6  // 9
-#define RMAINAXISPIN D7  // 10
-#define RRIGHTWINGPIN D8 // 11
+#define RLEFTWINGPIN D4  // 9
+#define RMAINAXISPIN D5  // 10
+#define RRIGHTWINGPIN D6 // 11
 
 #endif
