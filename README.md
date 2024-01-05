@@ -22,7 +22,9 @@ For now im waiting for new servos to arrive
       - [ElectronicCats/MPU6050](https://github.com/ElectronicCats/mpu6050)
     - [ ] Get raw IMU data (through Library)
     - [ ] Kalman Filter for attitude aquisition
-  - [ ] IMU Data processing (AI or a bunch of threshholds)
+  - [ ] IMU Data processing
+    - [ ] How to decide on a pose?  (AI or a bunch of threshholds)
+    - [ ] Temperature and/or dTemp/dTime dependent reactions?
 
 ## List of poses <sub>(and implementation tracker)</sub>
 ```
