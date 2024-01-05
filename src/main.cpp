@@ -1,11 +1,7 @@
-// does not compile
-//"multiple definition of (thing from Config.cpp)"
-
 #include "Config.cpp"
 #include "Ear.h"
 #include "HardwareSerial.h"
 #include <Arduino.h>
-#include <Servo.h>
 
 void choosePose(int poseNumber, Ear leftearf, Ear rightearf) {
   switch (poseNumber) {

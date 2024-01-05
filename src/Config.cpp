@@ -12,5 +12,4 @@ const int LRIGHTWINGPIN = 6;
 const int RLEFTWINGPIN = 9;
 const int RMAINAXISPIN = 10;
 const int RRIGHTWINGPIN = 11;
-
-#endif // !Config_cpp
+#endif
