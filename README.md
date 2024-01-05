@@ -8,7 +8,7 @@ For now im waiting for new servos to arrive
   - [ ] Microcontroller & IMU
     - [ ] Choose the IMU and MCU 
       - MCU: NodeMcuv2 (ESP8266)
-      - IMU: MPU6050 through i²c
+      - IMU: GY-91 IMU Board through SPI (MPU9250, BMP280) 6 Axis Gyro+Accelerometer, 3 Axis Magnetometer AK8963, Temperature and Pressure sensor BMP280
     - [ ] placement
     - [ ] Connection
   - [ ] Fluff (Fur) - [this?](https://www.amazon.de/WLLHYF-zotteligen-flauschige-Stuhlabdeckung-Weihnachten/dp/B0BJKKF45H) (a combination of white & black? pink insides?) how to attach?
