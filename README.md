@@ -7,7 +7,7 @@ For now im waiting for new servos to arrive
   - [x] general structure(Hinges, servo placement and Head-to-ears connection) - Revision is needed asa new servos arrive + make more space so the moving part doesnt touch the servo housing. Small servos are not powerful enough.
   - [ ] Microcontroller & IMU
     - [ ] Choose the IMU and MCU 
-      - MCU: Arduino Nano / ESP8266
+      - MCU: NodeMcuv2 (ESP8266)
       - IMU: MPU6050 through i²c
     - [ ] placement
     - [ ] Connection

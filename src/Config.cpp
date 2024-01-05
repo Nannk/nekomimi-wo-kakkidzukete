@@ -3,13 +3,17 @@
 
 #include <Arduino.h>
 
+#define SCL D1
+#define SDA D2
+
 // Left
-const int LLEFTWINGPIN = D1;  // 3
-const int LMAINAXISPIN = D2;  // 5
-const int LRIGHTWINGPIN = D3; // 6
+#define LLEFTWINGPIN D3  // 3
+#define LMAINAXISPIN D4  // 5
+#define LRIGHTWINGPIN D5 // 6
 
 // Right
-const int RLEFTWINGPIN = D4;  // 9
-const int RMAINAXISPIN = D5;  // 10
-const int RRIGHTWINGPIN = D6; // 11
+#define RLEFTWINGPIN D6  // 9
+#define RMAINAXISPIN D7  // 10
+#define RRIGHTWINGPIN D8 // 11
+
 #endif
