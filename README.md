@@ -35,14 +35,14 @@ For now im waiting for new servos to arrive
 23 | sides     | half closed to forward | 132  | 90   | 132   | 0    | 90   | 0     | ye  |
 24 | sides     | half closed to back    | 0    | 90   | 0     | 132  | 90   | 132   | ye  |
 ---|-----------|------------------------|---------------------|---------------------|-----|--------
-10 | forward   | fully open             | 106  | 150  | 26    | 106  | 30   | 26    | ye  |
-12 | forward   | half open              | 53   | 150  | 79    | 53   | 30   | 79    | ye  |
-13 | forward   | half closed to inside  | 132  | 150  | 132   | 0    | 30   | 0     | ye  |
-14 | forward   | half closed to outside | 0    | 150  | 0     | 132  | 30   | 132   | ye  |
+10 | forward   | fully open             | 106  | 30   | 26    | 106  | 150  | 26    | ye  |
+12 | forward   | half open              | 53   | 30   | 79    | 53   | 150  | 79    | ye  |
+13 | forward   | half closed to inside  | 132  | 30   | 132   | 0    | 150  | 0     | ye  |
+14 | forward   | half closed to outside | 0    | 30   | 0     | 132  | 150  | 132   | ye  |
 ---|-----------|------------------------|---------------------|---------------------|-----|--------
-31 | back      | fully closed           | 0    | 0    | 132   | 0    | 180  | 132   | ye  |
-33 | back      | half closed to inside  | 0    | 0    | 0     | 132  | 180  | 132   | ye  |
-34 | back      | half closed to outside | 132  | 0    | 132   | 0    | 180  | 0     | ye  |
+31 | back      | fully closed           | 0    | 180  | 132   | 0    | 0    | 132   | ye  |
+33 | back      | half closed to inside  | 0    | 180  | 0     | 132  | 0    | 132   | ye  |
+34 | back      | half closed to outside | 132  | 180  | 132   | 0    | 0    | 0     | ye  |
 ---|-----------|------------------------|---------------------|---------------------|-----|--------
 and some intermediates
 ```
@@ -60,12 +60,3 @@ Second digit: Ears opennnes
   - 4 - half closed to outside
 
 [CAD Model](https://cad.onshape.com/documents/12e9aba77e87c6321bec619e/w/794df45025b857e20fcdd77e/e/3349def638c04338ac328868?renderMode=0&uiState=658ed7810e636f5b707b00f6)
-## Servo Rotation
-
-Rotational direction of main servo is correct 
-```
-0 <-------> 180
-    servo 
-    shaft
-```
-view from top of the ear (bottom of the servo)
