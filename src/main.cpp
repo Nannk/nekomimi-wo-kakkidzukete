@@ -10,23 +10,23 @@
 void choosePose(int poseNumber, Ear leftearf, Ear rightearf) {
   switch (poseNumber) {
   case 10:
-    leftearf.movetoangleposition(106, 150, 26);
-    rightearf.movetoangleposition(106, 30, 26);
+    leftearf.movetoangleposition(106, 30, 26);
+    rightearf.movetoangleposition(106, 150, 26);
     break;
 
   case 12:
-    leftearf.movetoangleposition(53, 150, 79);
-    rightearf.movetoangleposition(53, 30, 79);
+    leftearf.movetoangleposition(53, 30, 79);
+    rightearf.movetoangleposition(53, 150, 79);
     break;
 
   case 13:
-    leftearf.movetoangleposition(132, 150, 132);
-    rightearf.movetoangleposition(0, 30, 0);
+    leftearf.movetoangleposition(132, 30, 132);
+    rightearf.movetoangleposition(0, 150, 0);
     break;
 
   case 14:
-    leftearf.movetoangleposition(0, 150, 0);
-    rightearf.movetoangleposition(132, 30, 132);
+    leftearf.movetoangleposition(0, 30, 0);
+    rightearf.movetoangleposition(132, 150, 132);
     break;
 
   case 20:
@@ -55,23 +55,23 @@ void choosePose(int poseNumber, Ear leftearf, Ear rightearf) {
     break;
 
   case 31:
-    leftearf.movetoangleposition(0, 0, 132);
-    rightearf.movetoangleposition(0, 180, 132);
+    leftearf.movetoangleposition(0, 180, 132);
+    rightearf.movetoangleposition(0, 0, 132);
     break;
 
   case 33:
-    leftearf.movetoangleposition(0, 0, 0);
-    rightearf.movetoangleposition(132, 180, 132);
+    leftearf.movetoangleposition(0, 180, 0);
+    rightearf.movetoangleposition(132, 0, 132);
     break;
 
   case 34:
-    leftearf.movetoangleposition(132, 0, 132);
-    rightearf.movetoangleposition(0, 180, 0);
+    leftearf.movetoangleposition(132, 180, 132);
+    rightearf.movetoangleposition(0, 0, 0);
     break;
 
   default:
-    leftearf.movetoangleposition(0, 0, 132);
-    rightearf.movetoangleposition(0, 180, 132);
+    leftearf.movetoangleposition(0, 180, 132);
+    rightearf.movetoangleposition(0, 0, 132);
     break;
   }
 }
