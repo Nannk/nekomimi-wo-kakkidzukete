@@ -81,10 +81,10 @@ int pose = 31;
 
 void setup() {
   Serial.begin(9600);
-
   leftear.earsetup(LLEFTWINGPIN, LMAINAXISPIN, LRIGHTWINGPIN);
   rightear.earsetup(RLEFTWINGPIN, RMAINAXISPIN, RRIGHTWINGPIN);
 
+  Serial.println("setup done");
   previosmillis = millis();
 }
 

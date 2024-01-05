@@ -4,12 +4,12 @@
 #include <Arduino.h>
 
 // Left
-const int LLEFTWINGPIN = 3;
-const int LMAINAXISPIN = 5;
-const int LRIGHTWINGPIN = 6;
+const int LLEFTWINGPIN = D1;  // 3
+const int LMAINAXISPIN = D2;  // 5
+const int LRIGHTWINGPIN = D3; // 6
 
 // Right
-const int RLEFTWINGPIN = 9;
-const int RMAINAXISPIN = 10;
-const int RRIGHTWINGPIN = 11;
+const int RLEFTWINGPIN = D4;  // 9
+const int RMAINAXISPIN = D5;  // 10
+const int RRIGHTWINGPIN = D6; // 11
 #endif
