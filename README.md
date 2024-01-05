@@ -1,5 +1,7 @@
 # 猫耳を活気づけて (is supposed to say "Animated Cat Ears")
 
+For now im waiting for new servos to arrive
+
 ## Development Plan
 - [ ] Hardware 
   - [x] general structure(Hinges, servo placement and Head-to-ears connection) - Revision is needed asa new servos arrive + make more space so the moving part doesnt touch the servo housing. Small servos are not powerful enough.
@@ -12,9 +14,9 @@
   - [ ] Fluff (Fur) - [this?](https://www.amazon.de/WLLHYF-zotteligen-flauschige-Stuhlabdeckung-Weihnachten/dp/B0BJKKF45H) (a combination of white & black? pink insides?) how to attach?
 
 - [ ] Software
-  - [ ] Poses 
-    - [ ] List of poses 
-    - [ ] Poses as sideffects functions (move servos to predefined angle values)
+  - [x] Poses 
+    - [x] List of poses 
+    - [x] Poses as sideffects functions (move servos to predefined angle values)
   - [ ] IMU Data
     - [ ] Find a Library (depends on hardware IMU)
       - [ElectronicCats/MPU6050](https://github.com/ElectronicCats/mpu6050)
