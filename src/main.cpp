@@ -84,12 +84,13 @@ void setup() {
   leftear.earsetup(LLEFTWINGPIN, LMAINAXISPIN, LRIGHTWINGPIN);
   rightear.earsetup(RLEFTWINGPIN, RMAINAXISPIN, RRIGHTWINGPIN);
 
+  choosePose(31, leftear, rightear);
   Serial.println("setup done");
   previosmillis = millis();
 }
 
 void loop() {
-  if (millis() - previosmillis >= 50) {
+  if (millis() - previosmillis >= 20) {
     previosmillis = millis();
 
     if (Serial.available()) {
