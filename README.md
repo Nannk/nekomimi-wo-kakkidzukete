@@ -62,3 +62,21 @@ Second digit: Ears opennnes
   - 4 - half closed to outside
 
 [CAD Model](https://cad.onshape.com/documents/12e9aba77e87c6321bec619e/w/794df45025b857e20fcdd77e/e/3349def638c04338ac328868?renderMode=0&uiState=658ed7810e636f5b707b00f6)
+
+## servos
+
+### 2g servos
+Brand:Surpass Hobby
+S0002P 2g plastic gear digital servo
+Voltage: 3.7\~4.2V DC
+Torque *:≥0.4kgf·cm at 4.2V
+Speed * : ≤0.06sec/60° at 4.2V
+Operating Angle: 180°±10°(500\~2500μs)
+Mechanical limit Angle: 360°
+Weight: 2.2 g
+Size: 16.7 × 8.2 × 17mm
+Shell material: ABS
+Motor type: hollow cup motor
+
+### 9g servos
+TowerPro sg90 (i guess knock-offs)
