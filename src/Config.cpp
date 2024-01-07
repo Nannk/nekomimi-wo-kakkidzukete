@@ -7,13 +7,15 @@
 // #define SDA D2
 
 // Left
-#define LLEFTWINGPIN D3  // 3
-#define LMAINAXISPIN D4  // 5
-#define LRIGHTWINGPIN D5 // 6
+#define LMAINAXISPIN D3 // 5
+//    wings
+#define LLEFTWINGPIN D5  // 3
+#define LRIGHTWINGPIN D6 // 6
 
 // Right
-#define RLEFTWINGPIN D6  // 9
-#define RMAINAXISPIN D7  // 10
+#define RMAINAXISPIN D4 // 10
+//    wings
+#define RLEFTWINGPIN D7  // 9
 #define RRIGHTWINGPIN D8 // 11
 
 #endif
