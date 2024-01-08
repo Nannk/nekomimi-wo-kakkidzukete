@@ -1,6 +1,7 @@
 #include "Ear.h"
 #include <Arduino.h>
-#include <ESP8266_ISR_Servo.h>
+#include <ESP8266_ISR_Servo.h> // this library is incredible
+
 // #include <Servo.h>
 
 #define MIN_MICROS 500
