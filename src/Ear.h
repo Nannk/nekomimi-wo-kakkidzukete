@@ -2,7 +2,7 @@
 #define Ear_h
 
 #include <Arduino.h>
-#include <Servo.h>
+// #include <Servo.h>
 
 class Ear {
 public:
@@ -10,8 +10,11 @@ public:
   void earsetup(int pinLeft, int pinMain, int pinRight);
 
 private:
-  Servo servoLeft;
-  Servo servoMain;
-  Servo servoRight;
+  // ISR_Servo servoLeft;
+  // ISR_Servo servoMain;
+  // ISR_Servo servoRight;
+  int servoindex1 = -1;
+  int servoindex2 = -1;
+  int servoindex3 = -1;
 };
 #endif
