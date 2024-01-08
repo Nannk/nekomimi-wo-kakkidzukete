@@ -90,7 +90,7 @@ void setup() {
 }
 
 void loop() {
-  if (millis() - previosmillis >= 20) {
+  if (millis() - previosmillis >= 50) {
     previosmillis = millis();
 
     if (Serial.available()) {
