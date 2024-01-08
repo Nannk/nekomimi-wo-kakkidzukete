@@ -3,6 +3,10 @@
 #include <ESP8266_ISR_Servo.h> // this library is incredible
 
 // #include <Servo.h>
+/*
+#define TIMER_INTERRUPT_DEBUG 0
+#define ISR_SERVO_DEBUG 0
+*/
 
 #define MIN_MICROS 500
 #define MAX_MICROS 2400
@@ -17,11 +21,9 @@ void Ear::earsetup(int pinLeft, int pinMain, int pinRight) {
 }
 
 void Ear::movetoangleposition(int angleLeft, int angleMain, int angleRight) {
-  if (servoindex1 != -1 && servoindex2 != -1 && servoindex3 != -1) {
-    ISR_Servo.setPosition(servoindex1, angleLeft);
-    ISR_Servo.setPosition(servoindex2, angleMain);
-    ISR_Servo.setPosition(servoindex3, angleRight);
-  }
+  ISR_Servo.setPosition(servoindex1, angleLeft);
+  ISR_Servo.setPosition(servoindex2, angleMain);
+  ISR_Servo.setPosition(servoindex3, angleRight);
 
   // servoLeft.write(angleLeft);
   // servoMain.write(angleMain);

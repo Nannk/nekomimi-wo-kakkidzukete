@@ -18,4 +18,7 @@
 #define RLEFTWINGPIN D7  // 9
 #define RRIGHTWINGPIN D8 // 11
 
+#define TIMER_INTERRUPT_DEBUG 0
+#define ISR_SERVO_DEBUG 0
+
 #endif

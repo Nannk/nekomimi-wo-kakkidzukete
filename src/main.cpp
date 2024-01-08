@@ -95,7 +95,6 @@ void loop() {
 
     if (Serial.available()) {
       pose = Serial.parseInt();
-      Serial.print("Pose Selected: ");
       Serial.println(pose);
 
       choosePose(pose, leftear, rightear);
