@@ -1,18 +1,15 @@
 #include "Config.cpp"
 #include "Ear.h"
 #include "HardwareSerial.h"
-#include "MPU9250/QuaternionFilter.h"
+#include "Wire.h"
 #include <Arduino.h>
-#include <MPU9250.h>
+#include <MPU9250_asukiaaa.h>
 
 // Variables
-
 Ear leftear;
 Ear rightear;
 
-MPU9250 mpu;
-
-MPU9250Setting mpusetting;
+MPU9250_asukiaaa mpu;
 
 unsigned long previosmillis = 0;
 
@@ -90,21 +87,14 @@ void choosePose(int poseNumber, Ear leftearf, Ear rightearf) {
   }
 }
 
+void calibration() {}
+
 void mpusetup() {
-
   Wire.begin();
+  Wire.setClock(400000UL);
 
-  mpusetting.accel_fs_sel = ACCEL_FS_SEL::A8G;
-  mpusetting.gyro_fs_sel = GYRO_FS_SEL::G1000DPS;
-  mpusetting.fifo_sample_rate = FIFO_SAMPLE_RATE::SMPL_500HZ;
-  mpusetting.gyro_fchoice = 0x03;
-  mpusetting.gyro_dlpf_cfg = GYRO_DLPF_CFG::DLPF_250HZ;
-  mpusetting.accel_fchoice = 0x01;
-  mpusetting.accel_dlpf_cfg = ACCEL_DLPF_CFG::DLPF_99HZ;
-
-  mpu.selectFilter(QuatFilterSel::NONE); // filter outputs zeroes
-
-  mpu.setup(0x68, mpusetting);
+  mpu.beginGyro();
+  mpu.beginAccel();
 }
 
 // main thingy
@@ -123,24 +113,22 @@ void setup() {
 
 void loop() {
 
-  if (mpu.update()) {
-    // TODO serialprints should are for testing only and should be removed as
-    // servo lib lags
-    Serial.print(mpu.getPitch());
+  // put imu update here
+  if (mpu.gyroUpdate() == 0) {
+    Serial.print(mpu.gyroX());
     Serial.print(",");
-    Serial.print(mpu.getYaw());
+    Serial.print(mpu.gyroY());
     Serial.print(",");
-    Serial.println(mpu.getRoll());
-    // Serial.print(",");
-    /*
-          Serial.print(mpu.getAccX());
-          Serial.print(",");
-          Serial.print(mpu.getAccY());
-          Serial.print(",");
-          Serial.print(mpu.getAccZ());
-          Serial.print(",");
-    */
-    // Serial.println(mpu.getTemperature());
+    Serial.print(mpu.gyroZ());
+    Serial.print(",");
+  }
+
+  if (mpu.accelUpdate() == 0) {
+    Serial.print(mpu.accelX());
+    Serial.print(",");
+    Serial.print(mpu.accelY());
+    Serial.print(",");
+    Serial.println(mpu.accelZ());
   }
 
   if (millis() - previosmillis >= 20) {
