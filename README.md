@@ -6,7 +6,7 @@ For now im waiting for new servos to arrive
 - [ ] Hardware 
   - [x] general structure(Hinges, servo placement and Head-to-ears connection) - Revision is needed asa new servos arrive + make more space so the moving part doesnt touch the servo housing. Small servos are not powerful enough.
   - [ ] Microcontroller & IMU
-    - [ ] Choose the IMU and MCU 
+    - [x] Choose the IMU and MCU 
       - MCU: NodeMcuv2 (ESP8266)
       - IMU: GY-91 IMU Board through SPI (MPU9250, BMP280) 6 Axis Gyro+Accelerometer, 3 Axis Magnetometer AK8963, Temperature and Pressure sensor BMP280
     - [ ] placement
@@ -17,13 +17,14 @@ For now im waiting for new servos to arrive
   - [x] Poses 
     - [x] List of poses 
     - [x] Poses as sideffects functions (move servos to predefined angle values)
-  - [ ] IMU Data
-    - [ ] Find a Library (depends on hardware IMU)
-      - [ElectronicCats/MPU6050](https://github.com/ElectronicCats/mpu6050)
-    - [ ] Get raw IMU data (through Library)
+  - [x] IMU Data
+    - [x] Find a Library (depends on hardware IMU)
+      - [hideakitai/MPU9250](https://github.com/hideakitai/MPU9250)
+    - [x] Get raw IMU data (through Library)
     - [ ] Kalman Filter for attitude aquisition
   - [ ] IMU Data processing
-    - [ ] How to decide on a pose?  (AI or a bunch of threshholds)
+    - [ ] FFT
+    - [ ] IMU Data samples to compare to
     - [ ] Temperature and/or dTemp/dTime dependent reactions?
 
 ## List of poses <sub>(and implementation tracker)</sub>
