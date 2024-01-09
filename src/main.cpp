@@ -122,28 +122,29 @@ void setup() {
 }
 
 void loop() {
-  if (millis() - previosmillis >= 1) {
-    previosmillis = millis();
 
-    if (mpu.update()) {
-      // TODO serialprints should are for testing only and should be removed as
-      // servo lib lags
-      Serial.print(mpu.getPitch());
-      Serial.print(",");
-      Serial.print(mpu.getYaw());
-      Serial.print(",");
-      Serial.println(mpu.getRoll());
-      // Serial.print(",");
-      /*
-            Serial.print(mpu.getAccX());
-            Serial.print(",");
-            Serial.print(mpu.getAccY());
-            Serial.print(",");
-            Serial.print(mpu.getAccZ());
-            Serial.print(",");
-      */
-      // Serial.println(mpu.getTemperature());
-    }
+  if (mpu.update()) {
+    // TODO serialprints should are for testing only and should be removed as
+    // servo lib lags
+    Serial.print(mpu.getPitch());
+    Serial.print(",");
+    Serial.print(mpu.getYaw());
+    Serial.print(",");
+    Serial.println(mpu.getRoll());
+    // Serial.print(",");
+    /*
+          Serial.print(mpu.getAccX());
+          Serial.print(",");
+          Serial.print(mpu.getAccY());
+          Serial.print(",");
+          Serial.print(mpu.getAccZ());
+          Serial.print(",");
+    */
+    // Serial.println(mpu.getTemperature());
+  }
+
+  if (millis() - previosmillis >= 20) {
+    previosmillis = millis();
 
     if (Serial.available()) {
       pose = Serial.parseInt();
