@@ -1,7 +1,25 @@
 #include "Config.cpp"
 #include "Ear.h"
 #include "HardwareSerial.h"
+#include "MPU9250/QuaternionFilter.h"
 #include <Arduino.h>
+#include <MPU9250.h>
+
+// Variables
+
+Ear leftear;
+Ear rightear;
+
+MPU9250 mpu;
+
+MPU9250Setting mpusetting;
+
+unsigned long previosmillis = 0;
+
+int pose = 31;
+float aX, aY, aZ, ratePitch, rateRoll, rateYaw, mpuTemperature;
+
+// custom functions
 
 void choosePose(int poseNumber, Ear leftearf, Ear rightearf) {
   switch (poseNumber) {
@@ -72,26 +90,60 @@ void choosePose(int poseNumber, Ear leftearf, Ear rightearf) {
   }
 }
 
-Ear leftear;
-Ear rightear;
+void mpusetup() {
 
-unsigned long previosmillis = 0;
+  Wire.begin();
 
-int pose = 31;
+  mpusetting.accel_fs_sel = ACCEL_FS_SEL::A8G;
+  mpusetting.gyro_fs_sel = GYRO_FS_SEL::G1000DPS;
+  mpusetting.fifo_sample_rate = FIFO_SAMPLE_RATE::SMPL_500HZ;
+  mpusetting.gyro_fchoice = 0x03;
+  mpusetting.gyro_dlpf_cfg = GYRO_DLPF_CFG::DLPF_250HZ;
+  mpusetting.accel_fchoice = 0x01;
+  mpusetting.accel_dlpf_cfg = ACCEL_DLPF_CFG::DLPF_99HZ;
+
+  mpu.selectFilter(QuatFilterSel::NONE); // filter outputs zeroes
+
+  mpu.setup(0x68, mpusetting);
+}
+
+// main thingy
 
 void setup() {
   Serial.begin(9600);
+
   leftear.earsetup(LLEFTWINGPIN, LMAINAXISPIN, LRIGHTWINGPIN);
   rightear.earsetup(RLEFTWINGPIN, RMAINAXISPIN, RRIGHTWINGPIN);
 
-  choosePose(31, leftear, rightear);
+  mpusetup();
+
   Serial.println("setup done");
   previosmillis = millis();
 }
 
 void loop() {
-  if (millis() - previosmillis >= 50) {
+  if (millis() - previosmillis >= 1) {
     previosmillis = millis();
+
+    if (mpu.update()) {
+      // TODO serialprints should are for testing only and should be removed as
+      // servo lib lags
+      Serial.print(mpu.getPitch());
+      Serial.print(",");
+      Serial.print(mpu.getYaw());
+      Serial.print(",");
+      Serial.println(mpu.getRoll());
+      // Serial.print(",");
+      /*
+            Serial.print(mpu.getAccX());
+            Serial.print(",");
+            Serial.print(mpu.getAccY());
+            Serial.print(",");
+            Serial.print(mpu.getAccZ());
+            Serial.print(",");
+      */
+      // Serial.println(mpu.getTemperature());
+    }
 
     if (Serial.available()) {
       pose = Serial.parseInt();
@@ -100,14 +152,4 @@ void loop() {
       choosePose(pose, leftear, rightear);
     }
   }
-  /* unused old code
-      positionL = analogRead(POTPIN1);
-      positionL = map(positionL, 0, 1023, 0, 180);
-
-      positionR = analogRead(POTPIN2);
-      positionR = map(positionR, 0, 1023, 0, 180);
-
-      leftear.movetoangleposition(90, positionL, 90);
-      rightear.movetoangleposition(90, positionR, 90);
-    */
 }
