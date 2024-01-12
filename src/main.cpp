@@ -2,19 +2,27 @@
 #include "Ear.h"
 #include "HardwareSerial.h"
 #include "Wire.h"
+#include "c_types.h"
 #include <Arduino.h>
 #include <MPU9250_asukiaaa.h>
+#include <arduinoFFT.h>
 
 // Variables
 Ear leftear;
 Ear rightear;
 
+// mpu
 MPU9250_asukiaaa mpu;
+float aX, aY, aZ, ratePitch, rateRoll, rateYaw, mpuTemperature;
+
+// fft
+arduinoFFT fft;
+const uint16_t samples = 64;
+const double sampling_frequency = 100;
 
 unsigned long previosmillis = 0;
 
 int pose = 31;
-float aX, aY, aZ, ratePitch, rateRoll, rateYaw, mpuTemperature;
 
 // custom functions
 
@@ -87,6 +95,8 @@ void choosePose(int poseNumber, Ear leftearf, Ear rightearf) {
   }
 }
 
+// possible calibration values because gyro has an offset, so it drifts quite
+// heavily and accel has an offset too
 void calibration() {}
 
 void mpusetup() {
@@ -98,7 +108,6 @@ void mpusetup() {
 }
 
 // main thingy
-
 void setup() {
   Serial.begin(9600);
 
