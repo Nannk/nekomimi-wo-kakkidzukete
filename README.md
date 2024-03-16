@@ -4,7 +4,7 @@ For now im waiting for new servos to arrive
 
 ## Development Plan
 - [ ] Hardware 
-  - [x] general structure(Hinges, servo placement and Head-to-ears connection) - Revision is needed asa new servos arrive + make more space so the moving part doesnt touch the servo housing. Small servos are not powerful enough.
+  - [ ] general structure(Hinges, servo placement and Head-to-ears connection) - v2 is WIP (i hope new hinges won't burn small servos anymore).
   - [ ] Microcontroller & IMU
     - [x] Choose the IMU and MCU 
       - MCU: NodeMcuv2 (ESP8266)
