@@ -1,8 +1,6 @@
-# 猫耳を活気づけて (is supposed to say "Animated Cat Ears")
+# 猫耳を活気づけて ("Animated Cat Ears")
 
-For now im waiting for new servos to arrive
-
-## Development Plan
+## TODO List
 - [ ] Hardware 
   - [ ] general structure(Hinges, servo placement and Head-to-ears connection) - v2 is WIP (i hope new hinges won't burn small servos anymore).
   - [ ] Microcontroller & IMU
