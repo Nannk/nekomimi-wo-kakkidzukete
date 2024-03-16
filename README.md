@@ -2,24 +2,25 @@
 
 ## TODO List
 - [ ] Hardware 
-  - [ ] general structure(Hinges, servo placement and Head-to-ears connection) - v2 is WIP (i hope new hinges won't burn small servos anymore).
+  - [x] general structure (Hinges, servo placement and Head-to-ears connection) - needs testing.
   - [ ] Microcontroller & IMU
     - [x] Choose the IMU and MCU 
       - MCU: NodeMcuv2 (ESP8266)
       - IMU: GY-91 IMU Board through SPI (MPU9250, BMP280) 6 Axis Gyro+Accelerometer, 3 Axis Magnetometer AK8963, Temperature and Pressure sensor BMP280
     - [ ] placement
     - [ ] Connection
+    - [ ] change Voltage regulator to ams1117 - ordered, now waiting. Probably need 2 for all 4 small servos => make a board
   - [ ] Fluff (Fur) - [this?](https://www.amazon.de/WLLHYF-zotteligen-flauschige-Stuhlabdeckung-Weihnachten/dp/B0BJKKF45H) (a combination of white & black? pink insides?) how to attach?
 
 - [ ] Software
   - [x] Poses 
     - [x] List of poses 
-    - [x] Poses as sideffects functions (move servos to predefined angle values)
+    - [x] Poses as sideffects functions (move servos to predefined angle values) - better set desired_angle variable so that it can be modified later depending on the IMU Data.
   - [x] IMU Data
     - [x] Find a Library (depends on hardware IMU)
       - [hideakitai/MPU9250](https://github.com/hideakitai/MPU9250)
     - [x] Get raw IMU data (through Library)
-    - [ ] Kalman Filter for attitude aquisition
+    - [ ] Kalman Filter for attitude aquisition (there was already a lib for that, might just use it. although i need raw data for FFT)
   - [ ] IMU Data processing
     - [ ] FFT
     - [ ] IMU Data samples to compare to
