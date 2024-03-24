@@ -13,7 +13,8 @@ Ear rightear;
 
 // mpu
 MPU9250_asukiaaa mpu;
-float aX, aY, aZ, ratePitch, rateRoll, rateYaw, mpuTemperature;
+float aX, aY, aZ, rateX, rateY, rateZ, mpuTemperature;
+float corr_gyroX, corr_gyroY, corr_gyroZ, corr_aX, corr_aY, corr_aZ;
 
 // fft
 arduinoFFT fft;
@@ -97,7 +98,14 @@ void choosePose(int poseNumber, Ear leftearf, Ear rightearf) {
 
 // possible calibration values because gyro has an offset, so it drifts quite
 // heavily and accel has an offset too
-void calibration() {}
+void calibration() {
+  corr_gyroX = -1.647184035;
+  corr_gyroY = 0.7031929047;
+  corr_gyroZ = -0.4409756098;
+  corr_aX = 0.00711751663;
+  corr_aY = 0.05541019956;
+  corr_aZ = 0.1359201774;
+}
 
 void mpusetup() {
   Wire.begin();
@@ -114,6 +122,8 @@ void setup() {
   leftear.earsetup(LLEFTWINGPIN, LMAINAXISPIN, LRIGHTWINGPIN);
   rightear.earsetup(RLEFTWINGPIN, RMAINAXISPIN, RRIGHTWINGPIN);
 
+  calibration();
+
   mpusetup();
 
   Serial.println("setup done");
@@ -124,30 +134,38 @@ void loop() {
 
   // put imu update here
   if (mpu.gyroUpdate() == 0) {
-    Serial.print(mpu.gyroX());
+
+    rateX = mpu.gyroX() + corr_gyroX;
+    rateY = mpu.gyroY() + corr_gyroY;
+    rateZ = mpu.gyroZ() + corr_gyroZ;
+
+    if (mpu.accelUpdate() == 0) {
+      aX = mpu.accelX() + corr_aX;
+      aY = mpu.accelY() + corr_aY;
+      aZ = mpu.accelZ() + corr_aZ;
+    }
+
+    Serial.print(rateX);
     Serial.print(",");
-    Serial.print(mpu.gyroY());
+    Serial.print(rateY);
     Serial.print(",");
-    Serial.print(mpu.gyroZ());
+    Serial.print(rateZ);
     Serial.print(",");
+
+    Serial.print(aX);
+    Serial.print(",");
+    Serial.print(aY);
+    Serial.print(",");
+    Serial.println(aZ);
   }
-
-  if (mpu.accelUpdate() == 0) {
-    Serial.print(mpu.accelX());
-    Serial.print(",");
-    Serial.print(mpu.accelY());
-    Serial.print(",");
-    Serial.println(mpu.accelZ());
-  }
-
-  if (millis() - previosmillis >= 20) {
-    previosmillis = millis();
-
-    if (Serial.available()) {
-      pose = Serial.parseInt();
-      Serial.println(pose);
-
+  /*
+    if (millis() - previosmillis >= 20) {
+      previosmillis = millis();
+          if (Serial.available()) {
+            pose = Serial.parseInt();
+            Serial.println(pose);
       choosePose(pose, leftear, rightear);
     }
-  }
+    }
+    */
 }
