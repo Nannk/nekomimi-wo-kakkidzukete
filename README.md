@@ -9,7 +9,7 @@
       - IMU: GY-91 IMU Board through SPI (MPU9250, BMP280) 6 Axis Gyro+Accelerometer, 3 Axis Magnetometer AK8963, Temperature and Pressure sensor BMP280
     - [ ] placement
     - [ ] Connection
-    - [ ] change Voltage regulator to ams1117 - ordered, now waiting. Probably need 2 for all 4 small servos => make a board
+    - [ ] change Voltage regulator to ams1117 - Need 2 for all 4 small servos => make a board
   - [ ] Fluff (Fur) - [this?](https://www.amazon.de/WLLHYF-zotteligen-flauschige-Stuhlabdeckung-Weihnachten/dp/B0BJKKF45H) (a combination of white & black? pink insides?) how to attach?
 
 - [ ] Software
