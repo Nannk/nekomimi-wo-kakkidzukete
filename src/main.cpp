@@ -22,6 +22,8 @@ const double sampling_frequency = 100;
 
 unsigned long previosmillis = 0;
 
+float offset_aX, offset_aY, offset_aZ, offset_rateX, offset_rateY, offset_rateZ;
+
 int pose = 31;
 
 // TODO put this in a separate file
@@ -123,6 +125,7 @@ void setup() {
   calibration();
 
   mpusetup();
+  // calibration();
 
   Serial.println("setup done");
   previosmillis = millis();
@@ -132,7 +135,6 @@ void loop() {
 
   // put imu update here
   if (mpu.gyroUpdate() == 0) {
-
     rateX = mpu.gyroX() + corr_gyroX;
     rateY = mpu.gyroY() + corr_gyroY;
     rateZ = mpu.gyroZ() + corr_gyroZ;
@@ -150,7 +152,6 @@ void loop() {
   Serial.print(",");
   Serial.print(rateZ);
   Serial.print(",");
-
   Serial.print(aX);
   Serial.print(",");
   Serial.print(aY);
