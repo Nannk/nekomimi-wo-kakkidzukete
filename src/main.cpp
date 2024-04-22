@@ -2,7 +2,6 @@
 #include "Ear.h"
 #include "HardwareSerial.h"
 #include "Wire.h"
-#include "c_types.h"
 #include <Arduino.h>
 #include <MPU9250_asukiaaa.h>
 #include <arduinoFFT.h>
@@ -25,8 +24,7 @@ unsigned long previosmillis = 0;
 
 int pose = 31;
 
-// custom functions
-
+// TODO put this in a separate file
 void choosePose(int poseNumber, Ear leftearf, Ear rightearf) {
   switch (poseNumber) {
   case 10:
@@ -138,26 +136,26 @@ void loop() {
     rateX = mpu.gyroX() + corr_gyroX;
     rateY = mpu.gyroY() + corr_gyroY;
     rateZ = mpu.gyroZ() + corr_gyroZ;
-
-    if (mpu.accelUpdate() == 0) {
-      aX = mpu.accelX() + corr_aX;
-      aY = mpu.accelY() + corr_aY;
-      aZ = mpu.accelZ() + corr_aZ;
-    }
-
-    Serial.print(rateX);
-    Serial.print(",");
-    Serial.print(rateY);
-    Serial.print(",");
-    Serial.print(rateZ);
-    Serial.print(",");
-
-    Serial.print(aX);
-    Serial.print(",");
-    Serial.print(aY);
-    Serial.print(",");
-    Serial.println(aZ);
   }
+  if (mpu.accelUpdate() == 0) {
+    aX = mpu.accelX() + corr_aX;
+    aY = mpu.accelY() + corr_aY;
+    aZ = mpu.accelZ() + corr_aZ;
+  }
+
+  ///
+  Serial.print(rateX);
+  Serial.print(",");
+  Serial.print(rateY);
+  Serial.print(",");
+  Serial.print(rateZ);
+  Serial.print(",");
+
+  Serial.print(aX);
+  Serial.print(",");
+  Serial.print(aY);
+  Serial.print(",");
+  Serial.println(aZ);
   /*
     if (millis() - previosmillis >= 20) {
       previosmillis = millis();
