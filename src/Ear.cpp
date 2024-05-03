@@ -11,21 +11,27 @@
 #define MIN_MICROS 500
 #define MAX_MICROS 2400
 
-void Ear::earsetup(int pinLeft, int pinMain, int pinRight) {
-  servoindex1 = ISR_Servo.setupServo(pinLeft, MIN_MICROS, MAX_MICROS);
-  servoindex2 = ISR_Servo.setupServo(pinMain, MIN_MICROS, MAX_MICROS);
-  servoindex3 = ISR_Servo.setupServo(pinRight, MIN_MICROS, MAX_MICROS);
-  // servoRight.attach(pinRight, 500, 2400);
-  // servoMain.attach(pinMain, 500, 2400);
-  // servoLeft.attach(pinLeft, 500, 2400);
+void Ear::earsetup(int pin_left, int pin_main, int pin_right) {
+  servoindex1 = ISR_Servo.setupServo(pin_left, MIN_MICROS, MAX_MICROS);
+  servoindex2 = ISR_Servo.setupServo(pin_main, MIN_MICROS, MAX_MICROS);
+  servoindex3 = ISR_Servo.setupServo(pin_right, MIN_MICROS, MAX_MICROS);
+  // servo_right.attach(pinRight, 500, 2400);
+  // servo_main.attach(pinMain, 500, 2400);
+  // servo_left.attach(pinLeft, 500, 2400);
 }
 
-void Ear::movetoangleposition(int angleLeft, int angleMain, int angleRight) {
-  ISR_Servo.setPosition(servoindex1, angleLeft);
-  ISR_Servo.setPosition(servoindex2, angleMain);
-  ISR_Servo.setPosition(servoindex3, angleRight);
+void Ear::movetoangleposition(int angle_left, int angle_main, int angle_right) {
+  ISR_Servo.setPosition(servoindex1, angle_left);
+  ISR_Servo.setPosition(servoindex2, angle_main);
+  ISR_Servo.setPosition(servoindex3, angle_right);
 
-  // servoLeft.write(angleLeft);
-  // servoMain.write(angleMain);
-  // servoRight.write(angleRight);
+  // servo_left.write(angleLeft);
+  // servo_main.write(angleMain);
+  // servo_right.write(angleRight);
+}
+
+void Ear::set_angle_position(int angle_left, int angle_main, int angle_right) {
+  Ear::angle_left = angle_left;
+  Ear::angle_main = angle_main;
+  Ear::angle_right = angle_right;
 }

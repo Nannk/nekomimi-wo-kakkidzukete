@@ -2,7 +2,7 @@
 #include "Ear.h"
 #include "HardwareSerial.h"
 #include "Wire.h"
-#include "poses.cpp"
+#include "poses.h"
 #include <Arduino.h>
 #include <MPU9250_asukiaaa.h>
 #include <arduinoFFT.h>
