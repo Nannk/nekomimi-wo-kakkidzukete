@@ -18,8 +18,9 @@
     - [x] Poses as sideffects functions (move servos to predefined angle values) - better set desired_angle variable so that it can be modified later depending on the IMU Data.
   - [x] IMU Data
     - [x] Find a Library (depends on hardware IMU)
-      - [hideakitai/MPU9250](https://github.com/hideakitai/MPU9250)
-    - [x] Get raw IMU data (through Library)
+      - [hideakitai/MPU9250](https://github.com/hideakitai/MPU9250) - with what appears to be a Kalman Filter.
+      - [MPU9250_asukiaaa](https://github.com/asukiaaa/MPU9250_asukiaaa) - Library that can return raw data, i am using it right now.
+    - [x] Get raw IMU data (through Library) - might  
     - [ ] Kalman Filter for attitude aquisition (there was already a lib for that, might just use it. although i need raw data for FFT)
     - [ ] How to detect the direction of a movement? From averaged Kalman Filter data?
   - [ ] IMU Data processing
