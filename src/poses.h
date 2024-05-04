@@ -3,6 +3,6 @@
 
 #include "Ear.h"
 
-void choosePose(int poseNumber, Ear leftearf, Ear rightearf);
+void choose_pose(int poseNumber, Ear leftearf, Ear rightearf);
 
 #endif // !poses_h

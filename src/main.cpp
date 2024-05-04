@@ -51,7 +51,7 @@ void mpusetup() {
   Wire.setClock(400000UL);
 
   mpu.beginGyro();
-  mpu.beginAccel();
+  // mpu.beginAccel();
 }
 
 // main thingy
@@ -81,7 +81,7 @@ void loop() {
   // put imu update here
   for (int i = 0; i < samples; i++) {
     while (mpu.gyroUpdate() != 0) {
-      delay(1);
+      delayMicroseconds(100);
     }
     vReal[i] = mpu.gyroX() + corr_gyroX; // rateX
     vImag[i] = 0.0;
@@ -94,19 +94,20 @@ void loop() {
   fft.compute(FFTDirection::Forward);                         /* Compute*/
   fft.complexToMagnitude(); /* Compute magnitudes */
 
-  if (millis() - previosmillis >= 10) {
-    previosmillis = millis();
+  // if (millis() - previosmillis >= 10) {
+  previosmillis = millis();
 
-    oled.clearDisplay();
-    for (int i = 0; i < samples / 2; i++) {
-      oled.drawPixel(i * 4, 0.2 * vReal[i], WHITE);
-    }
-    oled.setTextSize(1);
-    oled.setTextColor(WHITE);
-    oled.setCursor(68, 5);
-    oled.println(fft.majorPeak());
-    oled.display();
+  oled.clearDisplay();
+  for (int i = 0; i < (samples / 2) - 1; i++) {
+    oled.drawLine(i * 4, 0.1 * vReal[i], (i + 1) * 4, 0.1 * vReal[i + 1],
+                  WHITE);
   }
+  oled.setTextSize(1);
+  oled.setTextColor(WHITE);
+  oled.setCursor(68, 5);
+  oled.println(fft.majorPeak());
+  oled.display();
+  //}
   /*
   if (mpu.accelUpdate() == 0) {
     aX = mpu.accelX() + corr_aX;
@@ -127,8 +128,8 @@ void loop() {
     }
     */
 
-  // do not use choosepose,
-  // make an "angle variable",
+  // use as "setter" function Ear::set_ear_position(int l, int m, int r)
+  // then call Ear::move_to_set_angles();
   // process what it should be,
   //  movetoposion at the end every like 40 ms or so
 }

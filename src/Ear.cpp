@@ -20,7 +20,15 @@ void Ear::earsetup(int pin_left, int pin_main, int pin_right) {
   // servo_left.attach(pinLeft, 500, 2400);
 }
 
-void Ear::movetoangleposition(int angle_left, int angle_main, int angle_right) {
+void Ear::set_ear_position(int angle_left, int angle_main, int angle_right) {
+  Ear::angle_left = angle_left;
+  Ear::angle_main = angle_main;
+  Ear::angle_right = angle_right;
+}
+
+void Ear::move_to_set_angles() {
+  //  Ear::movetoangleposition(Ear::angle_left, Ear::angle_main,
+  //  Ear::angle_right);
   ISR_Servo.setPosition(servoindex1, angle_left);
   ISR_Servo.setPosition(servoindex2, angle_main);
   ISR_Servo.setPosition(servoindex3, angle_right);
@@ -28,10 +36,4 @@ void Ear::movetoangleposition(int angle_left, int angle_main, int angle_right) {
   // servo_left.write(angleLeft);
   // servo_main.write(angleMain);
   // servo_right.write(angleRight);
-}
-
-void Ear::set_angle_position(int angle_left, int angle_main, int angle_right) {
-  Ear::angle_left = angle_left;
-  Ear::angle_main = angle_main;
-  Ear::angle_right = angle_right;
 }

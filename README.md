@@ -21,31 +21,32 @@
       - [hideakitai/MPU9250](https://github.com/hideakitai/MPU9250)
     - [x] Get raw IMU data (through Library)
     - [ ] Kalman Filter for attitude aquisition (there was already a lib for that, might just use it. although i need raw data for FFT)
+    - [ ] How to detect the direction of a movement? From averaged Kalman Filter data?
   - [ ] IMU Data processing
-    - [ ] FFT
+    - [x] FFT  
     - [ ] IMU Data samples to compare to
     - [ ] Temperature and/or dTemp/dTime dependent reactions?
 
 ## List of poses <sub>(and implementation tracker)</sub>
 ```
- # | pose                               | ear left            | ear right           | dun | tested
-   | direction | opennnes               | left | main | right | left | main | right |     |
----|-----------|------------------------|---------------------|---------------------|-----|--------
-20 | sides     | fully open             | 106  | 90   | 26    | 106  | 90   | 26    | ye  |
-21 | sides     | fully closed           | 0    | 90   | 132   | 0    | 90   | 132   | ye  |
-22 | sides     | half open              | 53   | 90   | 79    | 53   | 90   | 79    | ye  |
-23 | sides     | half closed to forward | 132  | 90   | 132   | 0    | 90   | 0     | ye  |
-24 | sides     | half closed to back    | 0    | 90   | 0     | 132  | 90   | 132   | ye  |
----|-----------|------------------------|---------------------|---------------------|-----|--------
-10 | forward   | fully open             | 106  | 30   | 26    | 106  | 150  | 26    | ye  |
-12 | forward   | half open              | 53   | 30   | 79    | 53   | 150  | 79    | ye  |
-13 | forward   | half closed to inside  | 132  | 30   | 132   | 0    | 150  | 0     | ye  |
-14 | forward   | half closed to outside | 0    | 30   | 0     | 132  | 150  | 132   | ye  |
----|-----------|------------------------|---------------------|---------------------|-----|--------
-31 | back      | fully closed           | 0    | 180  | 132   | 0    | 0    | 132   | ye  |
-33 | back      | half closed to inside  | 0    | 180  | 0     | 132  | 0    | 132   | ye  |
-34 | back      | half closed to outside | 132  | 180  | 132   | 0    | 0    | 0     | ye  |
----|-----------|------------------------|---------------------|---------------------|-----|--------
+ # | pose                               | ear left            | ear right           |
+   | direction | opennnes               | left | main | right | left | main | right |
+---|-----------|------------------------|---------------------|---------------------|
+20 | sides     | fully open             | 106  | 90   | 26    | 106  | 90   | 26    |
+21 | sides     | fully closed           | 0    | 90   | 132   | 0    | 90   | 132   |
+22 | sides     | half open              | 53   | 90   | 79    | 53   | 90   | 79    |
+23 | sides     | half closed to forward | 132  | 90   | 132   | 0    | 90   | 0     |
+24 | sides     | half closed to back    | 0    | 90   | 0     | 132  | 90   | 132   |
+---|-----------|------------------------|---------------------|---------------------|
+10 | forward   | fully open             | 106  | 30   | 26    | 106  | 150  | 26    |
+12 | forward   | half open              | 53   | 30   | 79    | 53   | 150  | 79    |
+13 | forward   | half closed to inside  | 132  | 30   | 132   | 0    | 150  | 0     |
+14 | forward   | half closed to outside | 0    | 30   | 0     | 132  | 150  | 132   |
+---|-----------|------------------------|---------------------|---------------------|
+31 | back      | fully closed           | 0    | 180  | 132   | 0    | 0    | 132   |
+33 | back      | half closed to inside  | 0    | 180  | 0     | 132  | 0    | 132   |
+34 | back      | half closed to outside | 132  | 180  | 132   | 0    | 0    | 0     |
+---|-----------|------------------------|---------------------|---------------------|
 and some intermediates
 ```
 Note:
