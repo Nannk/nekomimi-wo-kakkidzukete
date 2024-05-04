@@ -20,7 +20,7 @@
     - [x] Find a Library (depends on hardware IMU)
       - [hideakitai/MPU9250](https://github.com/hideakitai/MPU9250) - with what appears to be a Kalman Filter.
       - [MPU9250_asukiaaa](https://github.com/asukiaaa/MPU9250_asukiaaa) - Library that can return raw data, i am using it right now.
-    - [x] Get raw IMU data (through Library) - might  
+    - [x] Get raw IMU data (through Library) - might have to change the imu, as the data rate from it is extremely slow. (Is the display causing it?)
     - [ ] Kalman Filter for attitude aquisition (there was already a lib for that, might just use it. although i need raw data for FFT)
     - [ ] How to detect the direction of a movement? From averaged Kalman Filter data?
   - [ ] IMU Data processing
