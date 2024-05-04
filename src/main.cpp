@@ -1,11 +1,14 @@
 #include "Config.cpp"
 #include "Ear.h"
-#include "HardwareSerial.h"
-#include "Wire.h"
+#include "core_esp8266_features.h"
 #include "poses.h"
+#include <Adafruit_GFX.h>     //oled
+#include <Adafruit_SSD1306.h> //oled
 #include <Arduino.h>
-#include <MPU9250_asukiaaa.h>
-#include <arduinoFFT.h>
+#include <MPU9250_asukiaaa.h> //mpu
+#include <Wire.h>             //mpu und oled
+#include <arduinoFFT.h>       //fft
+#include <cstdlib>
 
 // Variables
 Ear leftear;
@@ -19,9 +22,16 @@ float aX, aY, aZ, rateX, rateY, rateZ, mpuTemperature;
 float corr_gyroX, corr_gyroY, corr_gyroZ, corr_aX, corr_aY, corr_aZ;
 
 // fft
-arduinoFFT fft;
-const uint16_t samples = 64;
-const double sampling_frequency = 100;
+const uint16_t samples = 32;
+const double samplingFrequency = 50;
+
+float vReal[samples];
+float vImag[samples];
+
+ArduinoFFT<float> fft =
+    ArduinoFFT<float>(vReal, vImag, samples, samplingFrequency);
+
+Adafruit_SSD1306 oled(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 unsigned long previosmillis = 0;
 
@@ -46,48 +56,65 @@ void mpusetup() {
 
 // main thingy
 void setup() {
-  Serial.begin(9600);
-
   leftear.earsetup(LLEFTWINGPIN, LMAINAXISPIN, LRIGHTWINGPIN);
   rightear.earsetup(RLEFTWINGPIN, RMAINAXISPIN, RRIGHTWINGPIN);
 
+  if (!oled.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+    while (true)
+      ;
+  }
+
+  // dont need to set everything to 0 rn
+  // for (float value : vImag) {
+  //  value = 0.0;
+  //}
+  //
+
   calibration();
-
   mpusetup();
-  // calibration();
 
-  Serial.println("setup done");
   previosmillis = millis();
 }
 
 void loop() {
 
   // put imu update here
-  if (mpu.gyroUpdate() == 0) {
-    rateX = mpu.gyroX() + corr_gyroX;
-    rateY = mpu.gyroY() + corr_gyroY;
-    rateZ = mpu.gyroZ() + corr_gyroZ;
+  for (int i = 0; i < samples; i++) {
+    while (mpu.gyroUpdate() != 0) {
+      delay(1);
+    }
+    vReal[i] = mpu.gyroX() + corr_gyroX; // rateX
+    vImag[i] = 0.0;
+    // rateY = mpu.gyroY() + corr_gyroY;
+    // rateZ = mpu.gyroZ() + corr_gyroZ;
   }
+
+  fft.dcRemoval();
+  fft.windowing(FFTWindow::Rectangle, FFTDirection::Forward); /* Weigh data*/
+  fft.compute(FFTDirection::Forward);                         /* Compute*/
+  fft.complexToMagnitude(); /* Compute magnitudes */
+
+  if (millis() - previosmillis >= 10) {
+    previosmillis = millis();
+
+    oled.clearDisplay();
+    for (int i = 0; i < samples / 2; i++) {
+      oled.drawPixel(i * 4, 0.2 * vReal[i], WHITE);
+    }
+    oled.setTextSize(1);
+    oled.setTextColor(WHITE);
+    oled.setCursor(68, 5);
+    oled.println(fft.majorPeak());
+    oled.display();
+  }
+  /*
   if (mpu.accelUpdate() == 0) {
     aX = mpu.accelX() + corr_aX;
     aY = mpu.accelY() + corr_aY;
     aZ = mpu.accelZ() + corr_aZ;
   }
-
-  ///
-  Serial.print(rateX);
-  Serial.print(",");
-  Serial.print(rateY);
-  Serial.print(",");
-  Serial.print(rateZ);
-  Serial.print(",");
-  Serial.print(aX);
-  Serial.print(",");
-  Serial.print(aY);
-  Serial.print(",");
-  Serial.println(aZ);
-
-  choosePose(pose_number, leftear, rightear);
+*/
+  //  choosePose(pose_number, leftear, rightear);
 
   /*
     if (millis() - previosmillis >= 20) {

@@ -21,4 +21,7 @@
 #define TIMER_INTERRUPT_DEBUG 0
 #define ISR_SERVO_DEBUG 0
 
+#define SCREEN_WIDTH 128 // OLED display width,  in pixels
+#define SCREEN_HEIGHT 64 // OLED display height, in pixels
+
 #endif
