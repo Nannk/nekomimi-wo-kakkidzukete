@@ -42,9 +42,9 @@ E--> F;
 F --> G[Ear::move_to_set_angles];
 
 A --FFT--> I[Acceleration Spectrum];
-I --> J[Determine Peaks and their Magnitude of Acceleration Spectrum];
+I --> J[Determine Peaks and their Magnitude];
 B --FFT--> K[Rotation Spectrum];
-K --> L[Determine Peaks and their of Rotation Spectrum];
+K --> L[Determine Peaks and their Magnitude];
 L --> M[Compare with predefined Values];
 J --> M;
 M --> N[choose_pose];
