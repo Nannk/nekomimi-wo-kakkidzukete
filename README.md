@@ -28,6 +28,29 @@
     - [ ] IMU Data samples to compare to
     - [ ] Temperature and/or dTemp/dTime dependent reactions?
 
+## Compute schema
+```mermaid
+graph TD;
+A[Accelerometer] --> KF[[Kalman Filter]] ;
+KF --> C[Attitude];
+B[Gyroscope] --> KF;
+
+C --> D[Attitude dependent Position];
+B --> E[Response to Rotation];
+D --> F[Ear::set_ear_position];
+E--> F;
+F --> G[Ear::move_to_set_angles];
+
+A --FFT--> I[Acceleration Spectrum];
+I --> J[Determine Peaks and their Magnitude of Acceleration Spectrum];
+B --FFT--> K[Rotation Spectrum];
+K --> L[Determine Peaks and their of Rotation Spectrum];
+L --> M[Compare with predefined Values];
+J --> M;
+M --> N[choose_pose];
+N --> G;
+```
+
 ## List of poses <sub>(and implementation tracker)</sub>
 ```
  # | pose                               | ear left            | ear right           |
