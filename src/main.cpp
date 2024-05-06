@@ -142,8 +142,7 @@ void loop() {
   }
   */
 
-  // use as "setter" function Ear::set_ear_position(int l, int m, int r)
-  // then call Ear::move_to_set_angles();
-  // process what it should be,
-  //  movetoposion at the end every like 40 ms or so
+  // to move servos process what the anle should be,
+  // use a "setter" function Ear::set_ear_position(int l, int m, int r)
+  // then call Ear::move_to_set_angles() every 20ms (or 50ms) or so
 }
