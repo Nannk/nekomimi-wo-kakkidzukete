@@ -20,7 +20,7 @@ float aX, aY, aZ, rateX, rateY, rateZ, mpuTemperature;
 float corr_gyroX, corr_gyroY, corr_gyroZ, corr_aX, corr_aY, corr_aZ;
 
 // fft
-const uint16_t samples = 32;
+const uint16_t samples = 64;
 const double sampling_frequency = 500;
 
 float pitch_vReal[samples];
@@ -76,18 +76,17 @@ void setup() {
   calibration();
   mpusetup();
 
-  Serial.begin(115200);
+  Serial.begin(576000);
   previosmillis = millis();
 }
 /*
  * a wrapper around fft functions that computes fft and returns major peak.
  */
-float perform_fft(ArduinoFFT<float> fft) {
+void perform_fft(ArduinoFFT<float> fft) {
   fft.dcRemoval();
   fft.windowing(FFTWindow::Rectangle, FFTDirection::Forward); // Weigh data
   fft.compute(FFTDirection::Forward);                         // Compute
   fft.complexToMagnitude(); // Compute magnitudes
-  return fft.majorPeak();   // Return the frequency
 }
 
 void loop() {
@@ -111,13 +110,27 @@ void loop() {
       // rateZ = mpu.gyroZ() + corr_gyroZ;
     }
 
-    Serial.println(perform_fft(pitch_fft));
-    Serial.println(perform_fft(roll_fft));
-    Serial.println(perform_fft(yaw_fft));
-    for (float real : pitch_vReal) {
-      Serial.print(real);
+    perform_fft(pitch_fft);
+    perform_fft(roll_fft);
+    perform_fft(yaw_fft);
+
+    for (int i = 0; i < samples / 2; i++) {
+      Serial.print(pitch_vReal[i]);
+      Serial.print(",");
+      Serial.print(roll_vReal[i]);
+      Serial.print(",");
+      Serial.print(yaw_vReal[i]);
+      Serial.print(";");
     }
     Serial.println("");
+    /*
+    for (float real : pitch_vReal) {
+      Serial.print(real);
+      Serial.print(";");
+    }
+    Serial.println("");
+    */
+
     previosmillis = millis();
   }
   /*

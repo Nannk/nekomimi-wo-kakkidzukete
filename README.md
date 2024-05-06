@@ -2,31 +2,32 @@
 
 ## TODO List
 - [ ] Hardware 
-  - [x] general structure (Hinges, servo placement and Head-to-ears connection) - needs testing.
+  - [x] general structure (Hinges, servo placement and Head-to-ears connection) - still have to think where to put that paperclip wire.
   - [ ] Microcontroller & IMU
-    - [x] Choose the IMU and MCU 
-      - MCU: NodeMcuv2 (ESP8266)
+    - [x] Choose the IMU and MCU - it looks like ESP8266 has not enough umpf to read data, do 3 ffts on that data and send the result to serial. I want to use RPi0W and ESP8266, as RPi has only 2 PWM outputs. 
+      - MCU: NodeMcuv2 (ESP8266) for servo control, RPi0W for data processing.
       - IMU: GY-91 IMU Board through SPI (MPU9250, BMP280) 6 Axis Gyro+Accelerometer, 3 Axis Magnetometer AK8963, Temperature and Pressure sensor BMP280
-    - [ ] placement
-    - [ ] Connection
-    - [ ] change Voltage regulator to ams1117 - Need 2 for all 4 small servos => make a board
-  - [ ] Fluff (Fur) - [this?](https://www.amazon.de/WLLHYF-zotteligen-flauschige-Stuhlabdeckung-Weihnachten/dp/B0BJKKF45H) (a combination of white & black? pink insides?) how to attach?
+    - [x] change Voltage regulator to ams1117 
+    - [ ] Make a power distribution board (2 ams1117 in parallel for 3 small servos)
+    - [ ] Model all hardware into the Project (uncluding headband, CU usw)
+  - [ ] Fluff (Fur) - [this?](https://www.amazon.de/WLLHYF-zotteligen-flauschige-Stuhlabdeckung-Weihnachten/dp/B0BJKKF45H) (a combination of white & black? pink insides?)
 
 - [ ] Software
   - [x] Poses 
     - [x] List of poses 
-    - [x] Poses as sideffects functions (move servos to predefined angle values) - better set desired_angle variable so that it can be modified later depending on the IMU Data.
+    - [x] Poses as map of pose codes to desired_angle variables.
   - [x] IMU Data
     - [x] Find a Library (depends on hardware IMU)
       - [hideakitai/MPU9250](https://github.com/hideakitai/MPU9250) - with what appears to be a Kalman Filter.
       - [MPU9250_asukiaaa](https://github.com/asukiaaa/MPU9250_asukiaaa) - Library that can return raw data, i am using it right now.
-    - [x] Get raw IMU data (through Library) - might have to change the imu, as the data rate from it is extremely slow. (Is the display causing it?)
+    - [x] Get raw IMU data
     - [ ] Kalman Filter for attitude aquisition (there was already a lib for that, might just use it. although i need raw data for FFT)
     - [ ] How to detect the direction of a movement? From averaged Kalman Filter data?
   - [ ] IMU Data processing
     - [x] FFT  
     - [ ] IMU Data samples to compare to
     - [ ] Temperature and/or dTemp/dTime dependent reactions?
+  - [ ] Rewrite data processing in Rust to run on RPi. 
 
 ## Compute schema
 ```mermaid
@@ -50,6 +51,8 @@ J --> M;
 M --> N[choose_pose];
 N --> G;
 ```
+
+TODO: add system architecture graph
 
 ## List of poses <sub>(and implementation tracker)</sub>
 ```
