@@ -1,6 +1,12 @@
 # 猫耳を活気づけて ("Animated Cat Ears")
 
 ## TODO List
+### new
+  - [ ] Rewrite everything for eps8266 rtos sdk :skull:
+    - [ ] merge new project with the old repo(stop using platformio, use idf.py instead).
+    - [ ] determine what components i need to implement.
+
+### old
 - [ ] Hardware 
   - [x] general structure (Hinges, servo placement and Head-to-ears connection) - still have to think where to put that paperclip wire.
   - [ ] Microcontroller & IMU
@@ -27,7 +33,6 @@
     - [x] FFT  
     - [ ] IMU Data samples to compare to
     - [ ] Temperature and/or dTemp/dTime dependent reactions?
-  - [ ] Rewrite data processing in Rust to run on RPi. 
 
 ## Compute schema
 ```mermaid
