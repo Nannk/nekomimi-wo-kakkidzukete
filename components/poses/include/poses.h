@@ -1,8 +1,8 @@
 #ifndef poses_h
 #define poses_h
 
-#include "Ear.h"
+#include "ear.h"
 
-void choose_pose(int poseNumber, Ear leftearf, Ear rightearf);
+void choose_pose(int poseNumber, Ear leftear, Ear rightear);
 
 #endif // !poses_h
