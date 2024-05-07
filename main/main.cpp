@@ -1,17 +1,19 @@
 
 #include "ear.h"
 #include "esp_spi_flash.h"
-#include "esp_system.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
 #include "portmacro.h"
 #include "poses.h"
+#include "servo.h"
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
+#include <gpio.h>
 #include <stdio.h>
+#include <uart.h>
 
-#include "config.h"
-#include "uart.h"
+uint32_t pins[6] = {14, 0, 12, 13, 2, 15};
 
 struct Ears {
+  Servo servos;
   Ear leftear;
   Ear rightear;
 };
@@ -27,8 +29,9 @@ void pose_looping(void *params) {
   } else {
     choose_pose(31, ears->leftear, ears->rightear);
   }
-  ears->leftear.move_to_set_angles();
-  ears->rightear.move_to_set_angles();
+  toggle = !toggle;
+  ears->leftear.move_to_set_angles(ears->servos);
+  ears->rightear.move_to_set_angles(ears->servos);
   vTaskDelay(1000 / portTICK_PERIOD_MS);
 }
 
@@ -37,13 +40,21 @@ extern "C" void app_main() {
   printf("setting up\n");
   printf("...\n");
 
-  // vTaskDelay(1000 / portTICK_PERIOD_MS);
-  ears.leftear.earsetup(LLEFTWINGPIN, LMAINPIN, LRIGHTWINGPIN);
-  ears.rightear.earsetup(RLEFTWINGPIN, RMAINPIN, RRIGHTWINGPIN);
+  // assign channels
+  ears.leftear.ear_init(0, 1, 2);
+  ears.rightear.ear_init(3, 4, 5);
+  // start servos
+  ears.servos.servo_init(pins);
+
+  printf("done configuring servos\n");
+
+  vTaskDelay(1000 / portTICK_PERIOD_MS);
+  // ears.leftear.earsetup(ears.servos, &lleftpin, &lmainpin, &lrightpin);
+  // ears.rightear.earsetup(ears.servos, &rleftpin, &rmainpin, &rrightpin);
 
   choose_pose(31, ears.leftear, ears.rightear);
-  ears.leftear.move_to_set_angles();
-  ears.rightear.move_to_set_angles();
+  ears.leftear.move_to_set_angles(ears.servos);
+  ears.rightear.move_to_set_angles(ears.servos);
 
   printf("moved to default pose");
 

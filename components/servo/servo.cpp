@@ -32,12 +32,14 @@
 #include <stdlib.h>
 #include <uart.h>
 
+uint32_t duties[6] = {500, 500, 500, 500, 500, 500};
+
 struct Parameters {
   int angle;
   uint8_t channel;
 };
 
-uint32_t default_duty = 50;
+uint32_t default_duty = (0.025 + (0.1325 - 0.025) / 2) * UINT16_MAX;
 
 // someones SG90 works on 500µs ~ 2650µs (spec: 500µ ~ 2400µ)
 uint16_t calc_duty_from_angle(int angle) {
@@ -49,25 +51,10 @@ uint16_t calc_duty_from_angle(int angle) {
  * Returns -1 if a servo could not be Initialised.
  *  @param pins[] - array of used pins that servos are on
  */
-int Servo::servo_init(const uint32_t pin) {
-  int free_channel = 0;
-  if (this->channels[7] != -1) {
-    printf("max 8 channels are allowed");
-  } else {
-    for (int i = 0; i < sizeof(this->channels); i++) {
-      if (this->channels[i] == -1) {
-        free_channel = i;
-
-        printf("cping %d to an array\n", free_channel);
-        this->channels[free_channel] = free_channel;
-
-        printf("initialising servo #%d\n", free_channel);
-        pwm_init(2000, &default_duty, free_channel, &pin);
-        return free_channel;
-      }
-    }
-  }
-  return -1;
+void Servo::servo_init(uint32_t pin[]) {
+  printf("initialising servos\n");
+  pwm_init(2000, duties, 6, pin); // here somewher "LoadProhibite" exception
+  printf("servos done");
 }
 
 void rotate_task(void *input_data) {
@@ -85,5 +72,5 @@ void Servo::servo_rotate_to_angle(int angle, int channel) {
   Parameters *data = new Parameters;
   data->angle = angle;
   data->channel = channel;
-  xTaskCreate(rotate_task, "rotate_task", 256, data, 1, NULL);
+  xTaskCreate(rotate_task, "rotate_task", 2048, data, 1, NULL);
 }
