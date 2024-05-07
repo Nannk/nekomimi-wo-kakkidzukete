@@ -6,6 +6,7 @@
 // #define SCL D1
 // #define SDA D2
 // Left
+#include <cstdint>
 #define LMAINPIN 0 // D3 // 5
 //    wings
 #define LLEFTWINGPIN 14  // D5  // 3
@@ -16,5 +17,8 @@
 //    wings
 #define RLEFTWINGPIN 13  // D7  // 9
 #define RRIGHTWINGPIN 15 // D8 // 11
+
+#define MIN_MICROS 500
+#define MAX_MICROS 2400
 
 #endif

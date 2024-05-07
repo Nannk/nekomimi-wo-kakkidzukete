@@ -4,10 +4,12 @@
 #include "esp_system.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "portmacro.h"
 #include "poses.h"
 #include <stdio.h>
 
 #include "config.h"
+#include "uart.h"
 
 struct Ears {
   Ear leftear;
@@ -31,10 +33,12 @@ void pose_looping(void *params) {
 }
 
 extern "C" void app_main() {
-  printf("setting up");
+  uart_set_baudrate(UART_NUM_0, 112500);
+  printf("setting up\n");
+  printf("...\n");
 
+  // vTaskDelay(1000 / portTICK_PERIOD_MS);
   ears.leftear.earsetup(LLEFTWINGPIN, LMAINPIN, LRIGHTWINGPIN);
-
   ears.rightear.earsetup(RLEFTWINGPIN, RMAINPIN, RRIGHTWINGPIN);
 
   choose_pose(31, ears.leftear, ears.rightear);

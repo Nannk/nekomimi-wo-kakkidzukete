@@ -7,15 +7,11 @@
 #define TIMER_INTERRUPT_DEBUG 0
 #define ISR_SERVO_DEBUG 0
 */
-
-#define MIN_MICROS 500
-#define MAX_MICROS 2400
-
 void Ear::earsetup(int pin_left, int pin_main, int pin_right) {
 
-  channel_left = Ear::servos.servo_init((uint8_t *)pin_left);
-  channel_main = Ear::servos.servo_init((uint8_t *)pin_main);
-  channel_right = Ear::servos.servo_init((uint8_t *)pin_right);
+  channel_left = Ear::servos.servo_init(pin_left);
+  channel_main = Ear::servos.servo_init(pin_main);
+  channel_right = Ear::servos.servo_init(pin_right);
 
   //  servoindex1 = ISR_Servo.setupServo(pin_left, MIN_MICROS, MAX_MICROS);
   //  servoindex2 = ISR_Servo.setupServo(pin_main, MIN_MICROS, MAX_MICROS);

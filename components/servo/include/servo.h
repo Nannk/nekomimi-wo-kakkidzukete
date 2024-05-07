@@ -5,7 +5,7 @@
 
 class Servo {
 public:
-  int servo_init(const uint8_t *pin);
+  int servo_init(const uint32_t pin);
   void servo_rotate_to_angle(int angle, int channel);
   int8_t channels[8] = {-1, -1, -1, -1, -1, -1, -1, -1};
 

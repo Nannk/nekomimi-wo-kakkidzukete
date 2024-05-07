@@ -37,6 +37,8 @@ struct Parameters {
   uint8_t channel;
 };
 
+uint32_t default_duty = 50;
+
 // someones SG90 works on 500µs ~ 2650µs (spec: 500µ ~ 2400µ)
 uint16_t calc_duty_from_angle(int angle) {
   return (0.025 + (0.1325 - 0.025) * (double)angle / 180) * UINT16_MAX;
@@ -47,26 +49,34 @@ uint16_t calc_duty_from_angle(int angle) {
  * Returns -1 if a servo could not be Initialised.
  *  @param pins[] - array of used pins that servos are on
  */
-int Servo::servo_init(const uint8_t *pin) {
+int Servo::servo_init(const uint32_t pin) {
   int free_channel = 0;
   if (this->channels[7] != -1) {
     printf("max 8 channels are allowed");
-    return -1;
   } else {
     for (int i = 0; i < sizeof(this->channels); i++) {
-      if (this->channels[i] == -1)
+      if (this->channels[i] == -1) {
         free_channel = i;
+
+        printf("cping %d to an array\n", free_channel);
+        this->channels[free_channel] = free_channel;
+
+        printf("initialising servo #%d\n", free_channel);
+        pwm_init(2000, &default_duty, free_channel, &pin);
+        return free_channel;
+      }
     }
-    this->channels[free_channel] = free_channel;
-    pwm_init(1000, (uint32_t *)50, free_channel, (uint32_t *)pin);
-    return free_channel;
   }
+  return -1;
 }
 
 void rotate_task(void *input_data) {
   Parameters *data{reinterpret_cast<Parameters *>(input_data)};
   pwm_set_duty(data->channel, calc_duty_from_angle(data->angle));
   pwm_start();
+
+  printf("rotated channel %d", data->channel);
+
   vTaskDelay(20 / portTICK_PERIOD_MS);
   vTaskDelete(NULL);
 }
