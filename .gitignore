@@ -1,0 +1,6 @@
+.cache/
+.pio/
+build
+sdkconfig.old
+mpu_values.csv
+compile_commands.json

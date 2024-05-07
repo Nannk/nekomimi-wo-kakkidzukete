@@ -2,21 +2,24 @@
 #SHELL := /bin/bash
 #PATH := /usr/local/bin:$(PATH)
 
-all:
-	pio -f -c vim run
+PROJECT_NAME:=animated-cat-ears
 
+include $(IDF_PATH)/make/project.mk
 
-upload:
-	pio -f -c vim run --target upload
+#all:
+#	pio -f -c vim run
 
-clean:
-	pio -f -c vim run --target clean
+#upload:
+#	pio -f -c vim run --target upload
 
-program:
-	pio -f -c vim run --target program
+#clean:
+#	pio -f -c vim run --target clean
 
-uploadfs:
-	pio -f -c vim run --target uploadfs
+#program:
+#	pio -f -c vim run --target program
 
-update:
-	pio -f -c vim update
+#uploadfs:
+#	pio -f -c vim run --target uploadfs
+
+#update:
+#	pio -f -c vim update
