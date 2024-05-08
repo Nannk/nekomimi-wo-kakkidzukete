@@ -24,6 +24,7 @@
 
 #include "servo.h"
 #include "config.h"
+#include "portmacro.h"
 #include <cstdint>
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
@@ -31,8 +32,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <uart.h>
-
-uint32_t duties[6] = {500, 500, 500, 500, 500, 500};
 
 struct Parameters {
   int angle;
@@ -51,20 +50,18 @@ uint16_t calc_duty_from_angle(int angle) {
  * Returns -1 if a servo could not be Initialised.
  *  @param pins[] - array of used pins that servos are on
  */
-void Servo::servo_init(uint32_t pin[]) {
-  printf("initialising servos\n");
-  pwm_init(2000, duties, 6, pin); // here somewher "LoadProhibite" exception
-  printf("servos done");
+void Servo::servo_init() {
+  printf("initialising servos\n"); // debug
+  pwm_init(5000, duties, 6, pins);
 }
 
 void rotate_task(void *input_data) {
   Parameters *data{reinterpret_cast<Parameters *>(input_data)};
-  pwm_set_duty(data->channel, calc_duty_from_angle(data->angle));
+  pwm_set_phase(data->channel, data->angle);
+  // pwm_set_duty(data->channel, data->angle);
   pwm_start();
-
-  printf("rotated channel %d", data->channel);
-
-  vTaskDelay(20 / portTICK_PERIOD_MS);
+  vTaskDelay(50 / portTICK_PERIOD_MS);
+  // pwm_stop(0x00);
   vTaskDelete(NULL);
 }
 

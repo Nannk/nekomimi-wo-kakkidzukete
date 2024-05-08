@@ -1,6 +1,7 @@
 #include "ear.h"
 #include "servo.h"
 #include <cstdint>
+#include <cstdio>
 #include <sys/types.h>
 
 // #include <Servo.h>
