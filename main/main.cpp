@@ -1,5 +1,6 @@
 
 #include "ear.h"
+#include "esp_heap_caps.h"
 #include "esp_log.h"
 #include "esp_spi_flash.h"
 #include "portmacro.h"
@@ -23,16 +24,17 @@ bool toggle = true;
 static Ears ears;
 
 void pose_looping(Ears &ears) {
-  printf("in a pose looping task main loop\n");
-
   if (toggle) {
     choose_pose(20, ears.leftear, ears.rightear);
   } else {
     choose_pose(31, ears.leftear, ears.rightear);
   }
   toggle = !toggle;
-  ears.leftear.print_angles_debug();
-  ears.rightear.print_angles_debug();
+
+  printf("mem: %d\n", (int)heap_caps_get_free_size(MALLOC_CAP_32BIT));
+  ears.leftear.print_angles_debug();  // debug
+  ears.rightear.print_angles_debug(); // debug
+  printf("---\n");
   ears.leftear.move_to_set_angles(ears.servos);
   ears.rightear.move_to_set_angles(ears.servos);
   vTaskDelay(50 / portTICK_RATE_MS);

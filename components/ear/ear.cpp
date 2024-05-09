@@ -22,21 +22,12 @@ void Ear::ear_init(int lch, int mch, int rch) {
 }
 
 void Ear::set_ear_position(int angle_left, int angle_main, int angle_right) {
-  printf("value of inputs in setter method %d %d %d\n", angle_left, angle_main,
-         angle_right);
-
   ear_angle_left = angle_left;
   ear_angle_main = angle_main;
   ear_angle_right = angle_right;
-
-  printf("value of ear angles in setter method %d %d %d\n",
-         this->ear_angle_left, this->ear_angle_main, this->ear_angle_right);
 }
 
 void Ear::move_to_set_angles(Servo servos) {
-  printf("value of angle in ear impl %d %d %d\n", ear_angle_left,
-         ear_angle_main, ear_angle_right);
-
   servos.servo_rotate_to_angle(ear_angle_left, channel_left);
   servos.servo_rotate_to_angle(ear_angle_main, channel_main);
   servos.servo_rotate_to_angle(ear_angle_right, channel_right);

@@ -7,7 +7,7 @@
 class Servo {
 public:
   void servo_init();
-  void servo_rotate_to_angle(int angle, int channel);
+  void servo_rotate_to_angle(int &angle, int &channel);
 
 private:
   uint32_t duties[6] = {500, 500, 500, 500, 500, 500};

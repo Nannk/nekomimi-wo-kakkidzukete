@@ -63,14 +63,14 @@ void rotate_task(void *input_data) {
   // pwm_set_duty(data->channel, data->angle);
   pwm_start();
   vTaskDelay(45 / portTICK_PERIOD_MS);
-  // pwm_stop(0x00);
+  //  pwm_stop(0x00);
   vTaskDelete(NULL);
 }
 
-void Servo::servo_rotate_to_angle(int angle, int channel) {
+void Servo::servo_rotate_to_angle(int &angle, int &channel) {
   Parameters *data = new Parameters;
   data->angle = angle;
   data->channel = channel;
-  printf("in servo impl: angle %d, channel: %d\n", data->angle, data->channel);
   xTaskCreate(rotate_task, "rotate_task", 2048, data, 1, NULL);
+  free(data);
 }
