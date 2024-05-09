@@ -94,7 +94,7 @@ N --> G;
 ```
 
 ## 2.1 List of poses
-```
+```text
  # | pose                               | ear left            | ear right           |
    | direction | opennnes               | left | main | right | left | main | right |
 ---|-----------|------------------------|---------------------|---------------------|
