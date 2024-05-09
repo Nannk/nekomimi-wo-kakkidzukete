@@ -2,9 +2,9 @@
 
 ## TODO List
 ### new
-  - [ ] Rewrite everything for eps8266 rtos sdk :skull:
-    - [ ] merge new project with the old repo(stop using platformio, use idf.py instead).
-    - [ ] determine what components i need to implement.
+  - [ ] 1. Rewrite everything for eps8266 rtos sdk :skull:
+    - [x] 1.1 merge new project with the old repo(stop using platformio, use idf.py instead).
+    - [ ] 1.2 determine what components i need to implement.
 
 ### old
 - [ ] Hardware 
@@ -34,6 +34,24 @@
     - [ ] IMU Data samples to compare to
     - [ ] Temperature and/or dTemp/dTime dependent reactions?
 
+## 1.2 RTOS Task graph
+```mermaid
+graph TD;
+A[Task: 
+  Read data from SPI] -- IMU data --> B[Task: 
+  Perform FFT];
+A -- IMU data--> C[Task: 
+  use Kalman Filter];
+B -- Peaks: 
+Magnitude, Frequency --> D[Task: 
+  decide on Pose
+  choose_pose
+  adjust angles]
+C --Attitude--> D;
+D --servo angles--> E[Task:
+  set pwm duty];
+```
+
 ## Compute schema
 ```mermaid
 graph TD;
@@ -56,8 +74,6 @@ J --> M;
 M --> N[choose_pose];
 N --> G;
 ```
-
-TODO: add system architecture graph
 
 ## List of poses <sub>(and implementation tracker)</sub>
 ```
