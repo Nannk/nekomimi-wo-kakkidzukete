@@ -33,11 +33,6 @@
 #include <stdlib.h>
 #include <uart.h>
 
-struct Parameters {
-  int angle;
-  uint8_t channel;
-};
-
 uint32_t default_duty = (0.025 + (0.1325 - 0.025) / 2) * UINT16_MAX;
 
 // someones SG90 works on 500µs ~ 2650µs (spec: 500µ ~ 2400µ)
@@ -59,18 +54,18 @@ void Servo::servo_init() {
 void rotate_task(void *input_data) {
   Parameters *data{reinterpret_cast<Parameters *>(input_data)};
   // pwm_set_phase(data->channel, data->angle);
+  // printf("task channel: %d data: %d\n", data->angle, data->channel);
   pwm_set_duty(data->channel, calc_duty_from_angle(data->angle));
-  // pwm_set_duty(data->channel, data->angle);
   pwm_start();
   vTaskDelay(45 / portTICK_PERIOD_MS);
-  //  pwm_stop(0x00);
   vTaskDelete(NULL);
 }
 
-void Servo::servo_rotate_to_angle(int &angle, int &channel) {
-  Parameters *data = new Parameters;
-  data->angle = angle;
-  data->channel = channel;
-  xTaskCreate(rotate_task, "rotate_task", 2048, data, 1, NULL);
-  free(data);
+void Servo::servo_rotate_to_angle(int angle, int channel) {
+  //  Parameters *data = new Parameters;
+  persistent_data[channel].angle = angle;
+  persistent_data[channel].channel = channel;
+  // printf("channel %d\n", channel);
+  xTaskCreate(rotate_task, "rotate_task", 2048, &persistent_data[channel], 1,
+              NULL);
 }
