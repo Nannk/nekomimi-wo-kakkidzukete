@@ -20,11 +20,10 @@ struct Ears {
 
 bool toggle = true;
 
-Ears ears;
+static Ears ears;
 
-void pose_looping(Ears ears) {
+void pose_looping(Ears &ears) {
   printf("in a pose looping task main loop\n");
-  // Ears *ears{reinterpret_cast<Ears *>(params)};
 
   if (toggle) {
     choose_pose(20, ears.leftear, ears.rightear);
@@ -32,6 +31,8 @@ void pose_looping(Ears ears) {
     choose_pose(31, ears.leftear, ears.rightear);
   }
   toggle = !toggle;
+  ears.leftear.print_angles_debug();
+  ears.rightear.print_angles_debug();
   ears.leftear.move_to_set_angles(ears.servos);
   ears.rightear.move_to_set_angles(ears.servos);
   vTaskDelay(50 / portTICK_RATE_MS);

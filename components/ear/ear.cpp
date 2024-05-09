@@ -16,29 +16,42 @@
 // servo_main.attach(pinMain, 500, 2400);
 // servo_left.attach(pinLeft, 500, 2400);
 void Ear::ear_init(int lch, int mch, int rch) {
-  Ear::channel_left = lch;
-  Ear::channel_main = mch;
-  Ear::channel_right = rch;
+  channel_left = lch;
+  channel_main = mch;
+  channel_right = rch;
 }
 
 void Ear::set_ear_position(int angle_left, int angle_main, int angle_right) {
-  Ear::angle_left = angle_left;
-  Ear::angle_main = angle_main;
-  Ear::angle_right = angle_right;
+  printf("value of inputs in setter method %d %d %d\n", angle_left, angle_main,
+         angle_right);
+
+  ear_angle_left = angle_left;
+  ear_angle_main = angle_main;
+  ear_angle_right = angle_right;
+
+  printf("value of ear angles in setter method %d %d %d\n",
+         this->ear_angle_left, this->ear_angle_main, this->ear_angle_right);
 }
 
 void Ear::move_to_set_angles(Servo servos) {
-  servos.servo_rotate_to_angle(angle_left, channel_left);
-  servos.servo_rotate_to_angle(angle_main, channel_main);
-  servos.servo_rotate_to_angle(angle_right, channel_right);
+  printf("value of angle in ear impl %d %d %d\n", ear_angle_left,
+         ear_angle_main, ear_angle_right);
 
-  //  Ear::movetoangleposition(Ear::angle_left, Ear::angle_main,
-  //  Ear::angle_right);
-  // ISR_Servo.setPosition(servoindex1, angle_left);
-  // ISR_Servo.setPosition(servoindex2, angle_main);
-  // ISR_Servo.setPosition(servoindex3, angle_right);
-
-  // servo_left.write(angleLeft);
-  // servo_main.write(angleMain);
-  // servo_right.write(angleRight);
+  servos.servo_rotate_to_angle(ear_angle_left, channel_left);
+  servos.servo_rotate_to_angle(ear_angle_main, channel_main);
+  servos.servo_rotate_to_angle(ear_angle_right, channel_right);
 }
+
+void Ear::print_angles_debug() {
+  printf("%d %d %d\n", ear_angle_right, ear_angle_main, ear_angle_left);
+}
+
+//  Ear::movetoangleposition(Ear::angle_left, Ear::angle_main,
+//  Ear::angle_right);
+// ISR_Servo.setPosition(servoindex1, angle_left);
+// ISR_Servo.setPosition(servoindex2, angle_main);
+// ISR_Servo.setPosition(servoindex3, angle_right);
+
+// servo_left.write(angleLeft);
+// servo_main.write(angleMain);
+// servo_right.write(angleRight);

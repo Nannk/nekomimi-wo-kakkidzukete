@@ -4,7 +4,7 @@
 /* This function sets angles to the pre-determinde postions.
  *To denfine your own positions use Ear::set_ear_position()
  */
-void choose_pose(int poseNumber, Ear leftear, Ear rightear) {
+void choose_pose(int poseNumber, Ear &leftear, Ear &rightear) {
 
   printf("pose %d \n", poseNumber); // debug
 
