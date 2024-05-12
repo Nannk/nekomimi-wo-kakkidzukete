@@ -1,11 +1,9 @@
 
-#include "ear.h"
+#include "ears.h"
 #include "esp_heap_caps.h"
 #include "esp_log.h"
 #include "esp_spi_flash.h"
-#include "portmacro.h"
-#include "poses.h"
-#include "servo.h"
+#include "esp_task_wdt.h"
 #include <esp_timer.h>
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
@@ -13,56 +11,41 @@
 #include <stdio.h>
 #include <uart.h>
 
-struct Ears {
-  Servo servos;
-  Ear leftear;
-  Ear rightear;
-};
-
 static const char *TAG = "Main";
 
 bool toggle = true;
 
 static Ears ears;
 
-void pose_looping(Ears &ears) {
+void pose_looping(/*Ears &ears*/) {
+  // Ears *ears{reinterpret_cast<Ears *>(prt_ears)};
   if (toggle) {
-    choose_pose(20, ears.leftear, ears.rightear);
+    ears.choose_pose(20);
   } else {
-    choose_pose(31, ears.leftear, ears.rightear);
+    ears.choose_pose(31);
   }
   toggle = !toggle;
 
   ESP_LOGD(TAG, "memory: %d", (int)heap_caps_get_free_size(MALLOC_CAP_32BIT));
-  ears.leftear.print_angles_debug();
-  ears.rightear.print_angles_debug();
-  ears.leftear.move_to_set_angles(ears.servos);
-  ears.rightear.move_to_set_angles(ears.servos);
+  ears.move_to_set_angles();
   vTaskDelay(1000 / portTICK_RATE_MS);
 }
 
 extern "C" void app_main() {
+
   uart_set_baudrate(UART_NUM_0, 112500);
-  ESP_LOGI(TAG, "settin up");
-  printf("setting up\n"); // debug
+  ESP_LOGI(TAG, "setting up");
 
-  // assign channels
-  ears.leftear.ear_init(0, 1, 2);
-  ears.rightear.ear_init(3, 4, 5);
-  // start servos
-  ears.servos.servo_init();
+  // assign channels and start servos
+  ears.ears_init({0, 1, 2, 3, 4, 5});
 
-  //  vTaskDelay(1000 / portTICK_PERIOD_MS);
-  // ears.leftear.earsetup(ears.servos, &lleftpin, &lmainpin, &lrightpin);
-  // ears.rightear.earsetup(ears.servos, &rleftpin, &rmainpin, &rrightpin);
-
-  choose_pose(21, ears.leftear, ears.rightear);
-  ears.leftear.move_to_set_angles(ears.servos);
-  ears.rightear.move_to_set_angles(ears.servos);
-  // vTaskDelay(10000 / portTICK_RATE_MS); // for assembling wing correctly
+  ESP_LOGI(TAG, "done setting up");
+  // ears.choose_pose(21);
+  // ears.move_to_set_angles();
+  // vTaskDelay(100 / portTICK_RATE_MS); // for assembling wing correctly
   while (true) {
-    pose_looping(ears);
-    // xTaskCreate(pose_looping, "loop though poses", 4096, ears, 2, NULL);
+    pose_looping();
+    // xTaskCreate(pose_looping, "loop though poses", 4096, NULL, 1, NULL);
   }
   fflush(stdout);
 }
