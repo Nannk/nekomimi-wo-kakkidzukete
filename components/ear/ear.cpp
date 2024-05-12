@@ -1,8 +1,10 @@
 #include "ear.h"
+#include "esp_log.h"
 #include "servo.h"
-#include <cstdint>
 #include <cstdio>
 #include <sys/types.h>
+
+static const char *TAG = "Ear";
 
 // #include <Servo.h>
 /*
@@ -34,7 +36,8 @@ void Ear::move_to_set_angles(Servo servos) {
 }
 
 void Ear::print_angles_debug() {
-  printf("%d %d %d\n", ear_angle_right, ear_angle_main, ear_angle_left);
+  ESP_LOGD(TAG, "L: %d M: %d R: %d", ear_angle_left, ear_angle_main,
+           ear_angle_right);
 }
 
 //  Ear::movetoangleposition(Ear::angle_left, Ear::angle_main,

@@ -24,6 +24,7 @@
 
 #include "servo.h"
 #include "config.h"
+#include "esp_log.h"
 #include "portmacro.h"
 #include <cstdint>
 #include <freertos/FreeRTOS.h>
@@ -33,11 +34,14 @@
 #include <stdlib.h>
 #include <uart.h>
 
-uint32_t default_duty = (0.025 + (0.1325 - 0.025) / 2) * UINT16_MAX;
+static const char *TAG = "servo";
 
-// someones SG90 works on 500µs ~ 2650µs (spec: 500µ ~ 2400µ)
+// uint32_t default_duty = (0.025 + (0.1325 - 0.025) / 2) * UINT16_MAX;
+
+// servos use 500µs ~ 2500µs
 uint16_t calc_duty_from_angle(int angle) {
-  return (0.025 + (0.1325 - 0.025) * (double)angle / 180) * UINT16_MAX;
+  // return (0.025 + (0.1325 - 0.025) * (double)angle / 180) * UINT8_MAX;
+  return ((2000 * (double)angle) / 180) + 500;
 }
 
 /* Initialises the servos. Returns channel number.
@@ -47,7 +51,7 @@ uint16_t calc_duty_from_angle(int angle) {
  */
 void Servo::servo_init() {
   printf("initialising servos\n"); // debug
-  pwm_init(10000, duties, 6, pins);
+  pwm_init(5000, duties, 6, pins);
   pwm_set_phases(phases);
 }
 
@@ -55,9 +59,14 @@ void rotate_task(void *input_data) {
   Parameters *data{reinterpret_cast<Parameters *>(input_data)};
   // pwm_set_phase(data->channel, data->angle);
   // printf("task channel: %d data: %d\n", data->angle, data->channel);
+
+  ESP_LOGD(TAG, "channel: %d, data %d", data->channel, data->angle);
   pwm_set_duty(data->channel, calc_duty_from_angle(data->angle));
   pwm_start();
-  vTaskDelay(45 / portTICK_PERIOD_MS);
+  // vTaskDelay(20 / portTICK_PERIOD_MS);
+
+  // pwm_stop(0x00);
+
   vTaskDelete(NULL);
 }
 
@@ -66,6 +75,6 @@ void Servo::servo_rotate_to_angle(int angle, int channel) {
   persistent_data[channel].angle = angle;
   persistent_data[channel].channel = channel;
   // printf("channel %d\n", channel);
-  xTaskCreate(rotate_task, "rotate_task", 2048, &persistent_data[channel], 1,
+  xTaskCreate(rotate_task, "rotate_task", 1024, &persistent_data[channel], 1,
               NULL);
 }

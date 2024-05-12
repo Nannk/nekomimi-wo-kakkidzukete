@@ -25,5 +25,6 @@ private:
   int channel_left;
   int channel_main;
   int channel_right;
+  // Debug
 };
 #endif
