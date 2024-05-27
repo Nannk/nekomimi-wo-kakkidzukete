@@ -50,11 +50,9 @@ esp_err_t esp_i2c_init() {
   i2c_config_t conf;
   conf.mode = I2C_MODE_MASTER;
   conf.sda_io_num = (gpio_num_t)I2C_MASTER_SDA_IO;
-  gpio_set_pull_mode((gpio_num_t)I2C_MASTER_SDA_IO, GPIO_PULLUP_ONLY);
-  // conf.sda_pullup_en = (gpio_pullup_t)1;
+  conf.sda_pullup_en = (gpio_pullup_t)1;
   conf.scl_io_num = (gpio_num_t)I2C_MASTER_SCL_IO;
-  gpio_set_pull_mode((gpio_num_t)I2C_MASTER_SCL_IO, GPIO_PULLUP_ONLY);
-  // conf.scl_pullup_en = (gpio_pullup_t)1;
+  conf.scl_pullup_en = (gpio_pullup_t)1;
   conf.clk_stretch_tick =
       300; // 300 ticks, Clock stretch is about 210us, you can make changes
            // according to the actual situation.
@@ -156,8 +154,8 @@ esp_err_t Mpu::mpu9250_read(i2c_port_t i2c_num, uint8_t reg_address,
 // TODO: rewrite for 9250
 esp_err_t Mpu::mpu9250_init(i2c_port_t i2c_num) {
   uint8_t cmd_data;
-  vTaskDelay(100 / portTICK_RATE_MS);
   esp_i2c_init();
+  vTaskDelay(100 / portTICK_RATE_MS);
   cmd_data = 0x00; // reset mpu9250
   (mpu9250_write(i2c_num, PWR_MGMT_1, &cmd_data, 1));
   cmd_data = 0x07; // Set the SMPRT_DIV
