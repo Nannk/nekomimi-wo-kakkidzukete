@@ -13,7 +13,6 @@ public:
                           uint8_t *data, size_t data_len);
 
 private:
-  esp_err_t esp_init();
 };
 
 #endif

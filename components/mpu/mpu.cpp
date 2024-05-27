@@ -1,4 +1,5 @@
-/* yank the I2C example
+/* yank the example
+
 
    This example code is in the Public Domain (or CC0 licensed, at your option.)
 
@@ -45,7 +46,7 @@ static const char *TAG = "mpu";
  * @brief i2c master initialization
  */
 
-esp_err_t esp_init() {
+esp_err_t esp_i2c_init() {
   i2c_config_t conf;
   conf.mode = I2C_MODE_MASTER;
   conf.sda_io_num = (gpio_num_t)I2C_MASTER_SDA_IO;
@@ -93,7 +94,7 @@ esp_err_t Mpu::mpu9250_write(i2c_port_t i2c_num, uint8_t reg_address,
   i2c_master_write_byte(cmd, reg_address, ACK_CHECK_EN);
   i2c_master_write(cmd, data, data_len, ACK_CHECK_EN);
   i2c_master_stop(cmd);
-  ret = i2c_master_cmd_begin(i2c_num, cmd, 1000 / portTICK_RATE_MS);
+  ret = i2c_master_cmd_begin(i2c_num, cmd, 1 / portTICK_RATE_MS);
   i2c_cmd_link_delete(cmd);
 
   return ret;
@@ -156,17 +157,17 @@ esp_err_t Mpu::mpu9250_read(i2c_port_t i2c_num, uint8_t reg_address,
 esp_err_t Mpu::mpu9250_init(i2c_port_t i2c_num) {
   uint8_t cmd_data;
   vTaskDelay(100 / portTICK_RATE_MS);
-  esp_init();
+  esp_i2c_init();
   cmd_data = 0x00; // reset mpu9250
-  ESP_ERROR_CHECK(mpu9250_write(i2c_num, PWR_MGMT_1, &cmd_data, 1));
+  (mpu9250_write(i2c_num, PWR_MGMT_1, &cmd_data, 1));
   cmd_data = 0x07; // Set the SMPRT_DIV
-  ESP_ERROR_CHECK(mpu9250_write(i2c_num, SMPLRT_DIV, &cmd_data, 1));
+  (mpu9250_write(i2c_num, SMPLRT_DIV, &cmd_data, 1));
   cmd_data = 0x06; // Set the Low Pass Filter
-  ESP_ERROR_CHECK(mpu9250_write(i2c_num, CONFIG, &cmd_data, 1));
+  (mpu9250_write(i2c_num, CONFIG, &cmd_data, 1));
   cmd_data = 0x18; // Set the GYRO range
-  ESP_ERROR_CHECK(mpu9250_write(i2c_num, GYRO_CONFIG, &cmd_data, 1));
+  (mpu9250_write(i2c_num, GYRO_CONFIG, &cmd_data, 1));
   cmd_data = 0x01; // Set the ACCEL range
-  ESP_ERROR_CHECK(mpu9250_write(i2c_num, ACCEL_CONFIG, &cmd_data, 1));
+  (mpu9250_write(i2c_num, ACCEL_CONFIG, &cmd_data, 1));
   return ESP_OK;
 }
 
